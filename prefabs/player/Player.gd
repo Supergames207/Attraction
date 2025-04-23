@@ -18,9 +18,9 @@ func _input(event:InputEvent)->void:
 
 func _physics_process(delta: float) -> void:
 	var direction := Vector3(
-		Input.get_axis("left", "right"),
+		Input.get_axis("right", "left"),
 		0,
-		Input.get_axis("forward", "backward"),
+		Input.get_axis("backward", "forward"),
 	).normalized()
 	
 	var rotated_direction = direction.rotated(Vector3.UP, X_rot.rotation.y)
