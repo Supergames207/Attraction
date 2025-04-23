@@ -17,11 +17,10 @@ mesh = SubResource("CapsuleMesh_kpjcp")
 shape = SubResource("CapsuleShape3D_kne1u")
 
 [node name="X_rotation" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.533426, 0)
 script = ExtResource("2_kpjcp")
 
 [node name="Y_rotation" type="Node3D" parent="X_rotation"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.1326)
 
 [node name="Camera3D" type="Camera3D" parent="X_rotation/Y_rotation"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.16579, 0)
 current = true
