@@ -5,6 +5,8 @@ const DRAG: float = 0.8;
 const JUMP_POWER: float = 200;
 const GRAVITY: float = 7;
 
+@onready var X_rot = $X_rotation
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -21,7 +23,7 @@ func _physics_process(delta: float) -> void:
 		Input.get_axis("forward", "backward"),
 	).normalized()
 	
-	var rotated_direction = -direction
+	var rotated_direction = direction.rotated(Vector3.UP, X_rot.rotation.y)
 	
 	velocity += SPEED * delta * rotated_direction
 	velocity *= Vector3(DRAG, 1, DRAG)
