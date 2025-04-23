@@ -13,6 +13,8 @@ func _unhandled_input(e: InputEvent) -> void:
 	
 	CameraDirection.x -= event.relative.x * SENS_X / 100.
 	CameraDirection.y -= event.relative.y * SENS_Y / 100.
+	CameraDirection.y = clamp(CameraDirection.y,-80,80)
+	
 
 func _process(_delta: float) -> void:
 	rotation_degrees.y = CameraDirection.x
