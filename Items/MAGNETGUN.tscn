@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://e8keopo1evlv"]
+
+[ext_resource type="Script" uid="uid://d18jaj2y0ii4v" path="res://Items/MagnetGun.gd" id="1_2pas3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_y4ohr"]
+size = Vector3(1, 0.5, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2pas3"]
+size = Vector3(0.25, 0.5, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2pas3"]
+size = Vector3(5, 5, 5)
+
+[node name="Magnetgun" type="Node3D"]
+script = ExtResource("1_2pas3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.5, -0.25)
+mesh = SubResource("BoxMesh_y4ohr")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_2pas3")
+
+[node name="MagnetReach" type="Area3D" parent="."]
+gravity_space_override = 1
+gravity_point = true
+gravity = 100.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MagnetReach"]
+shape = SubResource("BoxShape3D_2pas3")

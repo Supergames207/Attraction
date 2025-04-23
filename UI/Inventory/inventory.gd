@@ -12,5 +12,3 @@ func _ready()->void:
 		if not inventory_data.slotdatas[i] or not inventory_data.slotdatas[i].item: continue
 		if inventory_data.slotdatas[i].item.texture:
 			new_slot.get_node("Slot/Item").texture = inventory_data.slotdatas[i].item.texture
-		if inventory_data.slotdatas[i].item.scene:
-			pass

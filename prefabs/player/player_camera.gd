@@ -18,5 +18,4 @@ func _unhandled_input(e: InputEvent) -> void:
 
 func _process(_delta: float) -> void:
 	rotation_degrees.y = CameraDirection.x
-
 	Y_rot.rotation_degrees.x = CameraDirection.y

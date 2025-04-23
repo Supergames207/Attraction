@@ -33,3 +33,15 @@ func _physics_process(delta: float) -> void:
 	else: velocity.y += -GRAVITY*delta
 	
 	move_and_slide()
+
+#If we ever need to cast a ray from the camera
+func ScreenPoint_to_ray(ray_l:float) -> Dictionary:
+	var space_state :PhysicsDirectSpaceState3D= get_world_3d().direct_space_state
+	var cam :Camera3D= owner.get_node("X_rotation/Y_rotation/Camera3D")
+	var mousepos := get_viewport().get_mouse_position()
+	var origin := cam.project_ray_origin(mousepos)
+	var end := origin + cam.project_ray_normal(mousepos) * ray_l
+	var query := PhysicsRayQueryParameters3D.create(origin, end)
+	query.exclude = [self]
+	var result := space_state.intersect_ray(query)
+	return result
