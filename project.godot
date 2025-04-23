@@ -15,6 +15,10 @@ run/main_scene="uid://bjvipbf1mrtmi"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+
 [input]
 
 Tab={

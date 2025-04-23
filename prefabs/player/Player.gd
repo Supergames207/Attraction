@@ -10,7 +10,7 @@ const default_camera_pos := Vector3(0,0.5,0)
 const BOB_FREQ := 2
 const BOB_AMP := 0.08
 var bob_t := 0.
-@onready var X_rot = $X_rotation
+@onready var X_rot := $X_rotation
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -28,8 +28,7 @@ func _physics_process(delta: float) -> void:
 		Input.get_axis("backward", "forward"),
 	).normalized()
 	
-	var rotated_direction = -direction.rotated(Vector3.UP, X_rot.rotation.y)
-	X_rot.position = Vector3(0,0.5+sin(Time.get_ticks_msec())/100,0)
+	var rotated_direction := -direction.rotated(Vector3.UP, X_rot.rotation.y)
 	velocity += SPEED * delta * rotated_direction
 	velocity *= Vector3(DRAG, 1, DRAG)
 	if not is_on_floor():
@@ -43,4 +42,5 @@ func _physics_process(delta: float) -> void:
 func head_bob(time:float)->Vector3:
 	var pos := Vector3.ZERO
 	pos.y = sin(time*BOB_FREQ)*BOB_AMP
+	pos.x = cos(time*BOB_FREQ/2)*BOB_AMP
 	return pos+default_camera_pos
