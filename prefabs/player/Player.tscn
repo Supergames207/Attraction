@@ -1,13 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://mm4etp0hcuyr"]
+[gd_scene load_steps=4 format=3 uid="uid://mm4etp0hcuyr"]
 
-[ext_resource type="Script" uid="uid://272sea8c745b" path="res://prefabs/player/Player.gd" id="1_xhfnw"]
-[ext_resource type="Script" uid="uid://bwqjs33qw02m5" path="res://prefabs/player/player_camera.gd" id="2_kpjcp"]
+[ext_resource type="Script" uid="uid://272sea8c745b" path="res://Player.gd" id="1_xhfnw"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_kpjcp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kne1u"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="RigidBody3D"]
+lock_rotation = true
 script = ExtResource("1_xhfnw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -17,10 +17,9 @@ mesh = SubResource("CapsuleMesh_kpjcp")
 shape = SubResource("CapsuleShape3D_kne1u")
 
 [node name="X_rotation" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.533426, 0)
-script = ExtResource("2_kpjcp")
 
 [node name="Y_rotation" type="Node3D" parent="X_rotation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.1326)
 
 [node name="Camera3D" type="Camera3D" parent="X_rotation/Y_rotation"]
-current = true
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.16579, 0)
