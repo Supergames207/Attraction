@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="InventoryData" load_steps=7 format=3 uid="uid://d363p8slmyloj"]
+
+[ext_resource type="Script" uid="uid://duxkqr8b2yonc" path="res://UI/Inventory/Datas/InventoryData.gd" id="1_jvdcp"]
+[ext_resource type="Script" uid="uid://ciol46eic1qok" path="res://UI/Inventory/Datas/SlotData.gd" id="2_427y2"]
+[ext_resource type="Script" uid="uid://cc00nvbnbo8t8" path="res://UI/Inventory/Datas/ItemData.gd" id="3_427y2"]
+[ext_resource type="PackedScene" uid="uid://b28pi0f08eeut" path="res://Items/TestItem.tscn" id="3_xgag7"]
+
+[sub_resource type="Resource" id="Resource_xgag7"]
+script = ExtResource("3_427y2")
+scene = ExtResource("3_xgag7")
+metadata/_custom_type_script = "uid://cc00nvbnbo8t8"
+
+[sub_resource type="Resource" id="Resource_yxdun"]
+script = ExtResource("2_427y2")
+quantity = 0
+item = SubResource("Resource_xgag7")
+metadata/_custom_type_script = "uid://ciol46eic1qok"
+
+[resource]
+script = ExtResource("1_jvdcp")
+slotdatas = Array[ExtResource("2_427y2")]([SubResource("Resource_yxdun"), null, null, null, null, null, null, null])
+metadata/_custom_type_script = "uid://duxkqr8b2yonc"

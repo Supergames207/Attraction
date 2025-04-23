@@ -1,14 +1,14 @@
 extends Node3D
 
-@export var SENS_X = 6.
-@export var SENS_Y = 10.
+@export var SENS_X := 6.
+@export var SENS_Y := 10.
 
-@onready var Y_rot = $Y_rotation
+@onready var Y_rot := $Y_rotation
 
-var CameraDirection = Vector3.ZERO
+var CameraDirection := Vector3.ZERO
 
 func _unhandled_input(e: InputEvent) -> void:
-	if e is not InputEventMouseMotion: return
+	if e is not InputEventMouseMotion or Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
 	var event: InputEventMouseMotion = e
 	
 	CameraDirection.x -= event.relative.x * SENS_X / 100.

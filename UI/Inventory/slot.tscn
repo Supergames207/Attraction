@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=4 uid="uid://wxtrja6byvl"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_aeygf"]
+_data = PackedByteArray("AAADAAUAAAABAAAAIAAAACAAAABSAAAAUklGRkoAAABXRUJQVlA4TD0AAAAvH8AHEBcgJEhDiew7xYKJy6zy/2MQEqShTPKb+x936MJMAyTUkT52MBojJ9y+Ef2fAFQ5st3G+YMc2VABAA==")
+size_override = Vector2(32, 32)
+
+[node name="Slot" type="PanelContainer"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 57.0
+offset_bottom = 56.0
+
+[node name="Slot" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("PortableCompressedTexture2D_aeygf")
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"i_mode": 1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "C:/Users/vasco/OneDrive/Documentos/Aseprite/sprites/Slot.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "d310d2f904f5654426bb8ea844434584"
+
+[node name="Quantity" type="Label" parent="Slot"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -26.0
+offset_right = 18.0
+offset_bottom = -3.0
+grow_vertical = 0
+text = "0"

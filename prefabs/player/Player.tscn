@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://mm4etp0hcuyr"]
+[gd_scene load_steps=6 format=3 uid="uid://mm4etp0hcuyr"]
 
 [ext_resource type="Script" uid="uid://272sea8c745b" path="res://prefabs/player/Player.gd" id="1_xhfnw"]
 [ext_resource type="Script" uid="uid://bwqjs33qw02m5" path="res://prefabs/player/player_camera.gd" id="2_kpjcp"]
+[ext_resource type="Script" uid="uid://bjdyxwrisrkkk" path="res://UI/Inventory/InventoryManagement.gd" id="3_1kmib"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_kpjcp"]
 
@@ -24,3 +25,8 @@ script = ExtResource("2_kpjcp")
 
 [node name="Camera3D" type="Camera3D" parent="X_rotation/Y_rotation"]
 current = true
+
+[node name="InventoryManagement" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, -0.75)
+script = ExtResource("3_1kmib")
+metadata/_custom_type_script = "uid://bjdyxwrisrkkk"
