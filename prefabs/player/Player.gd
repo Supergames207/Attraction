@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPEED: float = 200;
+const SPEED: float = 160;
 const DRAG: float = 0.8;
 const JUMP_POWER: float = 200;
 const GRAVITY: float = 7;
@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 		Input.get_axis("backward", "forward"),
 	).normalized()
 	
-	var rotated_direction = direction.rotated(Vector3.UP, X_rot.rotation.y)
+	var rotated_direction = -direction.rotated(Vector3.UP, X_rot.rotation.y)
 	
 	velocity += SPEED * delta * rotated_direction
 	velocity *= Vector3(DRAG, 1, DRAG)

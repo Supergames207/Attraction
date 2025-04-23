@@ -1,7 +1,7 @@
 extends Node3D
 
-@export var SENS_X = 4.
-@export var SENS_Y = 8.
+@export var SENS_X = 6.
+@export var SENS_Y = 10.
 
 @onready var Y_rot = $Y_rotation
 
