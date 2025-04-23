@@ -23,7 +23,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 mesh = SubResource("BoxMesh_2pas3")
 
 [node name="MagnetReach" type="Area3D" parent="."]
-gravity_space_override = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
 gravity_point = true
 gravity = 100.0
 
