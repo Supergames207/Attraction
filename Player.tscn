@@ -7,6 +7,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kne1u"]
 
 [node name="Player" type="RigidBody3D"]
+lock_rotation = true
 script = ExtResource("1_xhfnw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
