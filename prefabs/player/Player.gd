@@ -27,4 +27,5 @@ func _physics_process(delta: float) -> void:
 	
 	velocity += SPEED * delta * rotated_direction
 	velocity *= Vector3(DRAG, 1, DRAG)
+	velocity.y += -GRAVITY*delta
 	move_and_slide()
