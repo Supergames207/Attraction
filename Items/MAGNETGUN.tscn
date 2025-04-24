@@ -1,15 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://e8keopo1evlv"]
+[gd_scene load_steps=7 format=3 uid="uid://e8keopo1evlv"]
 
 [ext_resource type="Script" uid="uid://d18jaj2y0ii4v" path="res://Items/MagnetGun.gd" id="1_2pas3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_y4ohr"]
 size = Vector3(1, 0.5, 0.5)
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2pas3"]
+points = PackedVector3Array(0.5, 0.25, 0.25, 0.5, 0.25, -0.25, -0.5, 0.25, 0.25, 0.5, -0.25, 0.25, 0.5, -0.25, -0.25, -0.5, 0.25, -0.25, -0.5, -0.25, 0.25, -0.5, -0.25, -0.25)
+
 [sub_resource type="BoxMesh" id="BoxMesh_2pas3"]
 size = Vector3(0.25, 0.5, 0.25)
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0omay"]
+points = PackedVector3Array(-0.125, -0.25, -0.125, -0.125, -0.25, 0.125, -0.125, 0.25, -0.125, 0.125, -0.25, -0.125, 0.125, -0.25, 0.125, -0.125, 0.25, 0.125, 0.125, 0.25, -0.125, 0.125, 0.25, 0.125)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_2pas3"]
-size = Vector3(5, 5, 5)
+size = Vector3(1000, 1000, 1000)
 
 [node name="Magnetgun" type="Node3D"]
 script = ExtResource("1_2pas3")
@@ -18,9 +24,19 @@ script = ExtResource("1_2pas3")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.5, -0.25)
 mesh = SubResource("BoxMesh_y4ohr")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_2pas3")
+
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("BoxMesh_2pas3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_0omay")
 
 [node name="MagnetReach" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
