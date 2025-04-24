@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bjvipbf1mrtmi"]
+[gd_scene load_steps=22 format=3 uid="uid://bjvipbf1mrtmi"]
 
 [ext_resource type="Texture2D" uid="uid://bq7qop444l8g1" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://mm4etp0hcuyr" path="res://prefabs/player/Player.tscn" id="2_sugp2"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://1k8xuo843c3s" path="res://UI/Debug/Debug.gd" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://b2j1q2hqpvjre" path="res://UI/Inventory/inventory.gd" id="5_tefeu"]
 [ext_resource type="Script" uid="uid://6nhi6pi3psap" path="res://Creatures/BaseCreature.gd" id="6_tefeu"]
+[ext_resource type="Script" uid="uid://cg5pa7l4w7hpi" path="res://Components/HealthComponent.gd" id="7_o6xl0"]
+[ext_resource type="Script" uid="uid://crferjj26xq86" path="res://Components/BaseComponent.gd" id="7_tipki"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
 albedo_texture = ExtResource("1_0wfyh")
@@ -39,6 +41,11 @@ sky_material = SubResource("ProceduralSkyMaterial_o6xl0")
 background_mode = 2
 sky = SubResource("Sky_tipki")
 tonemap_mode = 2
+
+[sub_resource type="Resource" id="Resource_tipki"]
+script = ExtResource("7_o6xl0")
+max_health = 100
+metadata/_custom_type_script = "uid://cg5pa7l4w7hpi"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tefeu"]
 
@@ -134,15 +141,18 @@ columns = 8
 
 [node name="Enemies" type="Node3D" parent="."]
 
-[node name="Enemy" type="Node3D" parent="Enemies"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.862175, 7.1529)
+[node name="Enemy" type="RigidBody3D" parent="Enemies"]
 script = ExtResource("6_tefeu")
+components = Dictionary[String, ExtResource("7_tipki")]({
+"HealthComponent": SubResource("Resource_tipki")
+})
 metadata/_custom_type_script = "uid://6nhi6pi3psap"
 
-[node name="RigidBody3D" type="RigidBody3D" parent="Enemies/Enemy"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemies/Enemy/RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemies/Enemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.862175, 7.1529)
 shape = SubResource("CapsuleShape3D_tefeu")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemies/Enemy/RigidBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemies/Enemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.862175, 7.1529)
 mesh = SubResource("CapsuleMesh_tipki")
+skeleton = NodePath("")
