@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://bjvipbf1mrtmi"]
+[gd_scene load_steps=19 format=3 uid="uid://bjvipbf1mrtmi"]
 
 [ext_resource type="Texture2D" uid="uid://bq7qop444l8g1" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://mm4etp0hcuyr" path="res://prefabs/player/Player.tscn" id="2_sugp2"]
 [ext_resource type="Texture2D" uid="uid://dpo6m3253p7hd" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://1k8xuo843c3s" path="res://UI/Debug/Debug.gd" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://b2j1q2hqpvjre" path="res://UI/Inventory/inventory.gd" id="5_tefeu"]
+[ext_resource type="Script" uid="uid://6nhi6pi3psap" path="res://Creatures/BaseCreature.gd" id="6_tefeu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
 albedo_texture = ExtResource("1_0wfyh")
@@ -38,6 +39,14 @@ sky_material = SubResource("ProceduralSkyMaterial_o6xl0")
 background_mode = 2
 sky = SubResource("Sky_tipki")
 tonemap_mode = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tefeu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6xl0"]
+albedo_color = Color(0.47788, 0.47788, 0.47788, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tipki"]
+material = SubResource("StandardMaterial3D_o6xl0")
 
 [node name="Main" type="Node3D"]
 
@@ -122,3 +131,18 @@ offset_right = 134.0
 grow_horizontal = 2
 grow_vertical = 0
 columns = 8
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Enemy" type="Node3D" parent="Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.862175, 7.1529)
+script = ExtResource("6_tefeu")
+metadata/_custom_type_script = "uid://6nhi6pi3psap"
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Enemies/Enemy"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemies/Enemy/RigidBody3D"]
+shape = SubResource("CapsuleShape3D_tefeu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemies/Enemy/RigidBody3D"]
+mesh = SubResource("CapsuleMesh_tipki")
