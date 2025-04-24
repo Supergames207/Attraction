@@ -1,6 +1,9 @@
 extends Node3D
 class_name InventoryManagement
-@export var default_position:Vector3
+
+@export var default_position:Vector3 = Vector3(0.75, -0.5, -0.75)
+@onready var camera_3d: Camera3D = $"../X_rotation/Y_rotation/Camera3D"
+
 var slot_equipped:int = -1
 var inventory_data := load("res://UI/Inventory/InventoryData.tres")
 
@@ -14,10 +17,14 @@ func _input(e:InputEvent)->void:
 		load_item()
 
 func load_item()->void:
-	for child in get_children():
+	for child in camera_3d.get_children():
 		child.queue_free()
-	if slot_equipped<0 or not inventory_data.slotdatas[slot_equipped] or not inventory_data.slotdatas[slot_equipped].item or not inventory_data.slotdatas[slot_equipped].item.scene:return
+	if (slot_equipped<0
+		or not inventory_data.slotdatas[slot_equipped]
+		or not inventory_data.slotdatas[slot_equipped].item
+		or not inventory_data.slotdatas[slot_equipped].item.scene):
+		return
 	var new_item :Node= inventory_data.slotdatas[slot_equipped].item.scene.instantiate()
-	add_child(new_item)
+	camera_3d.add_child(new_item)
 	new_item.owner = owner
 	new_item.position = default_position
