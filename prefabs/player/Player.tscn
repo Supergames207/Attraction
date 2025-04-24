@@ -28,5 +28,4 @@ current = true
 
 [node name="InventoryManagement" type="Node3D" parent="."]
 script = ExtResource("3_1kmib")
-default_position = Vector3(0.75, 0, -0.75)
 metadata/_custom_type_script = "uid://bjdyxwrisrkkk"

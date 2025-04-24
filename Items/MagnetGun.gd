@@ -1,24 +1,27 @@
 extends Node3D
-var pull := false
-var magnet_power := 20
 
-func _input(e:InputEvent)->void:
-	if e is InputEventMouseButton:
-		var event:InputEventMouseButton = e
-		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-			pull = not pull
-	elif e is InputEventKey:
-		var event:InputEventKey= e
-		if e.pressed and event.keycode == KEY_R:
-			$MagnetReach.monitoring = not $MagnetReach.monitoring
+@export var magnet_power := 4
+var pulling := false
 
+@onready var magnet_area: Area3D = $MagnetArea
+@onready var gun_front: Node3D = $GunFront
 
-func _physics_process(_delta:float)->void:
-	if not $MagnetReach.monitoring: return
-	for rigid:Node3D in $MagnetReach.get_overlapping_bodies():
-		if not rigid is RigidBody3D:continue
-		var pos_error :Vector3= global_position-rigid.global_position
-		#rigid.apply_central_impulse(error*magnet_power/(error.length()*error.length()))
-		var length := pos_error.length() / 2
-		#var upwards := Vector3.UP * 0.2
-		rigid.apply_central_force(pos_error * magnet_power / (length*length)*(int(pull)*2-1))# + upwards)
+func _physics_process(delta: float) -> void:
+	pulling = Input.is_action_pressed("magnet_pull")
+	pull_objects(delta)
+
+func pull_objects(delta: float):
+	if not pulling: return
+	var bodies = magnet_area.get_overlapping_bodies()
+	
+	for i: Node3D in bodies:
+		if i.name == "Player": continue
+		if i is not RigidBody3D: continue
+		
+		var displacement = gun_front.global_position - i.global_position
+		var acceleration = displacement * magnet_power / displacement.length()
+		var dampening = 0.7
+		
+		var rb: RigidBody3D = i
+		rb.linear_velocity += acceleration * delta * 60
+		rb.linear_velocity *= dampening
