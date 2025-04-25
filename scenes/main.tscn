@@ -55,7 +55,7 @@ metadata/_custom_type_script = "uid://cg5pa7l4w7hpi"
 
 [sub_resource type="Resource" id="Resource_choun"]
 script = ExtResource("9_85g3d")
-speed = null
+speed = 20
 rotation_speed = 20
 metadata/_custom_type_script = "uid://ck5etco3ewrkw"
 

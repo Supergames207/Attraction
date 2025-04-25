@@ -25,5 +25,3 @@ func move(target_velocity:Vector3,delta:float)->void:
 	var velocity_error :Vector3 = target_velocity-parent.linear_velocity
 	var force := Pid.update(velocity_error,delta)
 	parent.apply_central_force(force)
-	#parent.apply_central_impulse(force)
-	print(parent.linear_velocity.length())

@@ -8,6 +8,7 @@ var nav_agent:NavigationAgent3D = NavigationAgent3D.new()
 
 
 func _ready()->void:
+	if not nav_agent: nav_agent = NavigationAgent3D.new()
 	nav_agent.debug_enabled = true
 	parent.physics_frame.connect(_physics_process)
 	parent.call_deferred("add_child",nav_agent)
