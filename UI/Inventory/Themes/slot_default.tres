@@ -1,0 +1,27 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dcah27h0fmeiv"]
+
+[sub_resource type="SystemFont" id="SystemFont_aeygf"]
+font_names = PackedStringArray("Monospace")
+font_weight = 999
+subpixel_positioning = 0
+oversampling = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_psfh5"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing_size = 0.82
+
+[resource]
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/font_sizes/font_size = 20
+Label/fonts/font = SubResource("SystemFont_aeygf")
+Panel/styles/panel = SubResource("StyleBoxFlat_psfh5")

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://mm4etp0hcuyr" path="res://prefabs/player/Player.tscn" id="2_sugp2"]
 [ext_resource type="Texture2D" uid="uid://dpo6m3253p7hd" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://1k8xuo843c3s" path="res://UI/Debug/Debug.gd" id="4_jyhfs"]
-[ext_resource type="Script" uid="uid://b2j1q2hqpvjre" path="res://UI/Inventory/inventory.gd" id="5_tefeu"]
+[ext_resource type="PackedScene" uid="uid://dulfab5p3h77k" path="res://UI/Inventory/S_Inventory.tscn" id="5_tbgi4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
 albedo_texture = ExtResource("1_0wfyh")
@@ -95,30 +95,5 @@ text = "Position: "
 layout_mode = 2
 text = "Velocity:"
 
-[node name="Inventory" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-script = ExtResource("5_tefeu")
-
-[node name="GridContainer" type="GridContainer" parent="UI/Inventory"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -134.0
-offset_top = -49.0
-offset_right = 134.0
-grow_horizontal = 2
-grow_vertical = 0
-columns = 8
+[node name="S_Inventory" parent="UI" instance=ExtResource("5_tbgi4")]
+unique_name_in_owner = true
