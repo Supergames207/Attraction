@@ -1,6 +1,5 @@
 @tool
-extends BaseComponent
-class_name HealthComponent
+class_name HealthComponent extends BaseComponent
 
 func get_custom_class_name()->String:
 	return "HealthComponent"
