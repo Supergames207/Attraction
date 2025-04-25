@@ -5,7 +5,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lt3yb"]
 
 [node name="Slot" type="PanelContainer"]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(56, 56)
 offset_right = 57.0
 offset_bottom = 56.0
 theme = ExtResource("1_psfh5")
@@ -45,12 +45,14 @@ metadata/_aseprite_wizard_source_file_hash_ = "d310d2f904f5654426bb8ea844434584"
 [node name="ItemPosition" type="Label" parent="Panel"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = -25.0
-offset_right = 20.0
-offset_bottom = -2.0
+offset_left = -6.5
+offset_top = -23.0
+offset_right = 6.5
+grow_horizontal = 2
 grow_vertical = 0
 text = "0"
