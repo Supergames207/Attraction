@@ -20,6 +20,7 @@ func _ready()->void:
 		component.parent = self
 		if "_ready" in component:
 			component.call("_ready")
+	
 
 func _physics_process(delta:float)->void:
 	physics_frame.emit(delta)
