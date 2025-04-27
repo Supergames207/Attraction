@@ -17,6 +17,7 @@ func _physics_process(_delta:float)->void:
 	if not $MagnetReach.monitoring: return
 	for rigid:Node3D in $MagnetReach.get_overlapping_bodies():
 		if not rigid is RigidBody3D:continue
+		if rigid.name == "Enemy":continue
 		var pos_error :Vector3= global_position-rigid.global_position
 		#rigid.apply_central_impulse(error*magnet_power/(error.length()*error.length()))
 		var length := pos_error.length() / 2

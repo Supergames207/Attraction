@@ -54,6 +54,7 @@ friction = 0.0
 [sub_resource type="Resource" id="Resource_tipki"]
 script = ExtResource("8_tipki")
 max_health = 100
+resistance = null
 metadata/_custom_type_script = "uid://cg5pa7l4w7hpi"
 
 [sub_resource type="Resource" id="Resource_choun"]
@@ -167,6 +168,8 @@ columns = 8
 transform = Transform3D(-1, 0, 2.8026e-45, 0, 1, 0, -2.8026e-45, 0, -1, 0, 1, 8)
 physics_material_override = SubResource("PhysicsMaterial_choun")
 lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 4
 script = ExtResource("6_tefeu")
 components = Dictionary[String, ExtResource("7_tipki")]({
 "HealthComponent": SubResource("Resource_tipki"),

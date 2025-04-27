@@ -26,6 +26,4 @@ func move(target_velocity:Vector3,delta:float)->void:
 	var force := Pid.update(velocity_error,delta)
 	#parent.apply_central_impulse(force*0.01)
 	parent.apply_central_force(force)
-	if not Engine.is_editor_hint():
-		print(parent.linear_velocity.length(),"  ",target_velocity.length())
 	orient_parent_to_direction(target_velocity,delta)
