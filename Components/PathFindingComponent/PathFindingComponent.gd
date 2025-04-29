@@ -1,27 +1,32 @@
 @tool
 class_name PathFindingComponent extends BaseComponent
 
-func get_custom_class_name()->String:
+func get_custom_class_name() -> String:
 	return "PathFindingComponent"
 
+@export var target_node_path :NodePath
+
 var nav_agent:NavigationAgent3D = NavigationAgent3D.new()
+var target_node : Node
 
 
 func _ready()->void:
 	if not nav_agent: nav_agent = NavigationAgent3D.new()
+	target_node = parent.get_node(target_node_path)
 	nav_agent.debug_enabled = true
 	parent.physics_frame.connect(_physics_process)
 	parent.call_deferred("add_child",nav_agent)
-	nav_agent.target_position = Vector3(1000,0,0)
+	if target_node:
+		nav_agent.target_position = target_node.global_position
 
-func _physics_process(delta:float)->void:
+func _physics_process(delta:float) -> void:
 	if (not "MovementComponent" in parent.components
-		or nav_agent.is_navigation_finished()
-		or not nav_agent.is_inside_tree()):
+		or not nav_agent.is_inside_tree()
+		or not target_node):
 			return
-	walk_to(nav_agent.target_position,delta)
+	walk_to(target_node.global_position,delta)
 
-func walk_to(target:Vector3,delta:float)->void:
+func walk_to(target:Vector3,delta:float) -> void:
 	if not "MovementComponent" in parent.components: return
 	nav_agent.target_position = target
 	if nav_agent.is_navigation_finished():
