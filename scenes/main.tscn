@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://mm4etp0hcuyr" path="res://prefabs/player/Player.tscn" id="2_sugp2"]
 [ext_resource type="Texture2D" uid="uid://dpo6m3253p7hd" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://1k8xuo843c3s" path="res://UI/Debug/Debug.gd" id="4_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://dulfab5p3h77k" path="res://UI/Inventory/S_Inventory.tscn" id="5_tbgi4"]
+[ext_resource type="PackedScene" path="res://UI/Inventory/S_Inventory.tscn" id="5_tbgi4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
 albedo_texture = ExtResource("1_0wfyh")
