@@ -10,6 +10,7 @@ class_name BaseCreature extends RigidBody3D
 			value.erase(key)
 		
 		components = value
+@export var drops :Array
 
 signal physics_frame
 signal process_frame

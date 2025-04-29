@@ -17,11 +17,21 @@ func _ready() -> void:
 
 func _physics_process(_delta:float) -> void:
 	var colliding_bodies := parent.get_colliding_bodies()
+
 	for bodie in colliding_bodies:
 		if not bodie is RigidBody3D: continue
 		var rigid :RigidBody3D = bodie
-		var relative_pos := (parent.global_position-rigid.global_position).normalized()
-		cur_health -= max(0,(rigid.linear_velocity*rigid.linear_velocity.dot(relative_pos)).length())*resistance
+
+		var rigid_relative_pos := (parent.global_position-rigid.global_position).normalized()
+		var rigid_relative_velocity := (rigid.linear_velocity*rigid.linear_velocity.dot(rigid_relative_pos)).length()
+		rigid_relative_pos *= resistance
+
+		var relative_pos := (rigid.global_position-parent.global_position).normalized()
+		var relative_velocity := (parent.linear_velocity*parent.linear_velocity.dot(relative_pos)).length()
+		relative_velocity *= resistance
+
+		print("RIGID ",rigid_relative_pos,"\n CREATURE ",relative_velocity)
+		change_health(-max(0,rigid_relative_velocity+relative_velocity))
 		print(cur_health)
 
 func change_health(change:int)->void:
@@ -33,4 +43,4 @@ func change_health(change:int)->void:
 
 
 func die()->void:
-	pass
+	parent.queue_free()

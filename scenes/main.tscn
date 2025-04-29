@@ -53,8 +53,8 @@ friction = 0.0
 
 [sub_resource type="Resource" id="Resource_tipki"]
 script = ExtResource("8_tipki")
-max_health = 100
-resistance = null
+max_health = 100.0
+resistance = 0.1
 metadata/_custom_type_script = "uid://cg5pa7l4w7hpi"
 
 [sub_resource type="Resource" id="Resource_choun"]
@@ -176,6 +176,7 @@ components = Dictionary[String, ExtResource("7_tipki")]({
 "MovementComponent": SubResource("Resource_choun"),
 "PathFindingComponent": SubResource("Resource_eb6dy")
 })
+drops = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enemies/Enemy"]
 shape = SubResource("CapsuleShape3D_tefeu")
