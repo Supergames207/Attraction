@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name  Player extends CharacterBody3D
 
 const SPEED: float = 160;
 const DRAG: float = 0.8;
@@ -10,7 +10,7 @@ const GRAVITY: float = 30;
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-func _input(event:InputEvent)->void:
+func _input(_event:InputEvent)->void:
 	if Input.is_action_just_pressed("Tab"):
 		match Input.mouse_mode:
 			Input.MOUSE_MODE_CAPTURED: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
