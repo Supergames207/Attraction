@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://duxkqr8b2yonc" path="res://UI/Inventory/Datas/InventoryData.gd" id="1_jvdcp"]
 [ext_resource type="Script" uid="uid://ciol46eic1qok" path="res://UI/Inventory/Datas/SlotData.gd" id="2_427y2"]
 [ext_resource type="Script" uid="uid://cc00nvbnbo8t8" path="res://UI/Inventory/Datas/ItemData.gd" id="3_427y2"]
-[ext_resource type="PackedScene" uid="uid://e8keopo1evlv" path="res://Items/MagnetGun/MAGNETGUN.tscn" id="3_xgag7"]
+[ext_resource type="PackedScene" path="res://Items/MagnetGun/MAGNETGUN.tscn" id="3_xgag7"]
 
 [sub_resource type="Resource" id="Resource_trh37"]
 script = ExtResource("3_427y2")
