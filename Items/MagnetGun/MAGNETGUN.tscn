@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dhug1i44ob4u7"]
 
-[ext_resource type="Script" path="res://Items/MagnetGun/MagnetGun.gd" id="1_0vxx5"]
+[ext_resource type="Script" uid="uid://d18jaj2y0ii4v" path="res://Items/MagnetGun/MagnetGun.gd" id="1_0vxx5"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_y4ohr"]
 size = Vector3(1, 0.5, 0.5)

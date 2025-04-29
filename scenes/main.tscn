@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=3 uid="uid://bjvipbf1mrtmi"]
 
-[ext_resource type="Texture2D" uid="uid://bq7qop444l8g1" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="1_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://cq460qvb5p3hb" path="res://addons/kenney_prototype_textures/dark/texture_03.png" id="2_choun"]
 [ext_resource type="PackedScene" uid="uid://mm4etp0hcuyr" path="res://prefabs/player/Player.tscn" id="2_sugp2"]
 [ext_resource type="Texture2D" uid="uid://dpo6m3253p7hd" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://1k8xuo843c3s" path="res://UI/Debug/Debug.gd" id="4_jyhfs"]
@@ -12,19 +12,8 @@
 [ext_resource type="Script" uid="uid://cb14sh8liqs37" path="res://Components/PathFindingComponent/PathFindingComponent.gd" id="10_choun"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ya4ey"]
-vertices = PackedVector3Array(-499.5, 0.45, 0, -5, 0.45, 0, -4.75, 0.45, -1, -3.75, 0.45, -499.5, -499.5, 0.45, -499.5, -3.75, 0.45, -1, -3, 0.45, -1, -2.75, 0.45, 0, 499.5, 0.45, 0, 499.5, 0.45, -499.5, -5, 0.45, 1, -4, 0.45, 1.25, -499.5, 0.45, 499.5, -4, 0.45, 499.5, -3.25, 0.45, 1.25, 499.5, 0.45, 499.5)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(3, 5, 2), PackedInt32Array(6, 5, 3), PackedInt32Array(6, 3, 7), PackedInt32Array(7, 3, 8), PackedInt32Array(8, 3, 9), PackedInt32Array(0, 1, 10), PackedInt32Array(10, 11, 0), PackedInt32Array(0, 11, 13), PackedInt32Array(0, 13, 12), PackedInt32Array(13, 11, 14), PackedInt32Array(14, 7, 13), PackedInt32Array(13, 7, 8), PackedInt32Array(13, 8, 15)]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
-albedo_texture = ExtResource("1_0wfyh")
-uv1_triplanar = true
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_jyhfs"]
-material = SubResource("StandardMaterial3D_sugp2")
-size = Vector2(1000, 1000)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_sugp2"]
-size = Vector3(1000, 0.1, 1000)
+vertices = PackedVector3Array(-49.5, 10.5, -49.5, -49.5, 10.5, -48.5, 49.5, 10.5, -48.5, 49.5, 10.5, -49.5, -48.25, 0.5, 0.25, -5, 0.5, 0.25, -5, 0.5, -0.75, -3.75, 0.5, -1, -3.75, 0.5, -47.75, -48.25, 0.5, -47.75, -3, 0.5, -1, -2.75, 0.5, 0, 48.5, 0.5, 0, 48.5, 0.5, -47.75, -3.25, 0.5, 1.25, -4, 0.5, 1.25, -4, 0.5, 49, 48.5, 0.5, 49, -5, 0.5, 1, -48.25, 0.5, 49)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(6, 5, 4), PackedInt32Array(6, 4, 7), PackedInt32Array(7, 4, 8), PackedInt32Array(8, 4, 9), PackedInt32Array(10, 7, 8), PackedInt32Array(10, 8, 11), PackedInt32Array(11, 8, 12), PackedInt32Array(12, 8, 13), PackedInt32Array(16, 15, 14), PackedInt32Array(14, 11, 16), PackedInt32Array(16, 11, 12), PackedInt32Array(16, 12, 17), PackedInt32Array(4, 5, 18), PackedInt32Array(18, 15, 4), PackedInt32Array(4, 15, 16), PackedInt32Array(4, 16, 19)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbgi4"]
 albedo_texture = ExtResource("3_sugp2")
@@ -35,6 +24,16 @@ uv1_triplanar = true
 material = SubResource("StandardMaterial3D_tbgi4")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tbgi4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_85g3d"]
+size = Vector3(100, 10, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_choun"]
+size = Vector3(98, 10, 98)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ya4ey"]
+albedo_texture = ExtResource("2_choun")
+uv1_scale = Vector3(100, 100, 100)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o6xl0"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -81,15 +80,6 @@ material = SubResource("StandardMaterial3D_o6xl0")
 [node name="World" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_ya4ey")
 
-[node name="Ground" type="MeshInstance3D" parent="World"]
-mesh = SubResource("PlaneMesh_jyhfs")
-skeleton = NodePath("")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="World/Ground"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Ground/StaticBody3D"]
-shape = SubResource("BoxShape3D_sugp2")
-
 [node name="RigidBody3D" type="RigidBody3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, 0)
 
@@ -99,6 +89,17 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/RigidBody3D"]
 shape = SubResource("BoxShape3D_tbgi4")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_85g3d")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="World/CSGMesh3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.615)
+operation = 2
+mesh = SubResource("BoxMesh_choun")
+material = SubResource("StandardMaterial3D_ya4ey")
 
 [node name="Enviroment" type="Node3D" parent="."]
 
@@ -165,7 +166,7 @@ columns = 8
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="Enemy" type="RigidBody3D" parent="Enemies"]
-transform = Transform3D(-1, 0, 2.8026e-45, 0, 1, 0, -2.8026e-45, 0, -1, 0, 1, 8)
+transform = Transform3D(-1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, -1, 0, 1, 8)
 physics_material_override = SubResource("PhysicsMaterial_choun")
 lock_rotation = true
 contact_monitor = true
