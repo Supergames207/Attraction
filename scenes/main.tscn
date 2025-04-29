@@ -176,7 +176,6 @@ components = Dictionary[String, ExtResource("7_tipki")]({
 "MovementComponent": SubResource("Resource_choun"),
 "PathFindingComponent": SubResource("Resource_eb6dy")
 })
-drops = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enemies/Enemy"]
 shape = SubResource("CapsuleShape3D_tefeu")
