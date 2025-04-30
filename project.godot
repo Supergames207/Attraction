@@ -23,6 +23,10 @@ gdscript/warnings/untyped_declaration=1
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
 
+[global_group]
+
+Metal="Checker for magnet uses"
+
 [input]
 
 Tab={
