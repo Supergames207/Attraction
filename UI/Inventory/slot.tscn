@@ -3,6 +3,7 @@
 [sub_resource type="SystemFont" id="SystemFont_aeygf"]
 font_names = PackedStringArray("Monospace")
 font_weight = 999
+subpixel_positioning = 0
 oversampling = 3.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_psfh5"]
@@ -65,7 +66,8 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "d310d2f904f5654426bb8ea844434584"
 
-[node name="Quantity" type="Label" parent="Panel"]
+[node name="ItemPosition" type="Label" parent="Panel"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0

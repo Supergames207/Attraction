@@ -5,18 +5,18 @@ class_name InventoryManagement
 
 
 @onready var camera_3d: Camera3D = %Camera3D
-@onready var slot_container: HBoxContainer = get_root().get_node("%S_Inventory/%SlotContainer")
+#@onready var slot_container: HBoxContainer = get_root().get_node("%S_Inventory/%SlotContainer")
+@onready var slot_container: HBoxContainer = get_root().get_node("%SlotContainer")
 
 var current_slot: PanelContainer = null
 var slot_equipped: int = -1
 var inventory_data := load("res://UI/Inventory/InventoryData.tres")
-var slot_themes: Dictionary[String, Theme] = {
-	default = preload("res://UI/Inventory/Themes/slot_default.tres"),
-	equipped = preload("res://UI/Inventory/Themes/slot_equipped.tres"),
-}
+# var slot_themes: Dictionary[String, Theme] = {
+# 	default = preload("res://UI/Inventory/Themes/slot_default.tres"),
+# 	equipped = preload("res://UI/Inventory/Themes/slot_equipped.tres"),
+# }
 
 func _input(e: InputEvent) -> void:
-
 	if not e is InputEventKey: return
 	var event: InputEventKey = e
 
@@ -48,15 +48,15 @@ func load_item() -> void:
 	new_item.position = default_position
 
 func update_slot() -> void:
-	if current_slot != null:
-		current_slot.theme = slot_themes.default
+	#if current_slot != null:
+		#current_slot.theme = slot_themes.default
 	
 	if slot_equipped < 0:
 		current_slot = null
 		return
 	
-	var slot: PanelContainer = slot_container.get_node("slot_%s" % slot_equipped)
+	var slot: PanelContainer = PanelContainer.new()#slot_container.get_node("slot_%s" % slot_equipped)
 	if slot == null: return
 
 	current_slot = slot
-	slot.theme = slot_themes.equipped
+	#slot.theme = slot_themes.equipped
