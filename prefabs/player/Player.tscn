@@ -24,6 +24,7 @@ script = ExtResource("2_kpjcp")
 [node name="Y_rotation" type="Node3D" parent="X_rotation"]
 
 [node name="Camera3D" type="Camera3D" parent="X_rotation/Y_rotation"]
+unique_name_in_owner = true
 current = true
 
 [node name="InventoryManagement" type="Node3D" parent="."]
