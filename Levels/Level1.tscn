@@ -29,8 +29,10 @@ size = Vector3(98, 10, 98)
 albedo_texture = ExtResource("3_iotdp")
 uv1_scale = Vector3(100, 100, 100)
 
-[node name="Level1" type="Node3D"]
+[node name="Level1" type="Node3D" node_paths=PackedStringArray("enemies_holder", "buttons_holder")]
 script = ExtResource("1_w77jt")
+enemies_holder = NodePath("EnemiesHolder")
+buttons_holder = NodePath("World/ButtonsHolder")
 
 [node name="World" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_nutv8")

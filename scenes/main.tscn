@@ -1,40 +1,14 @@
-[gd_scene load_steps=29 format=3 uid="uid://bjvipbf1mrtmi"]
+[gd_scene load_steps=20 format=3 uid="uid://bjvipbf1mrtmi"]
 
-[ext_resource type="Texture2D" uid="uid://cq460qvb5p3hb" path="res://addons/kenney_prototype_textures/dark/texture_03.png" id="2_choun"]
 [ext_resource type="PackedScene" uid="uid://mm4etp0hcuyr" path="res://prefabs/player/Player.tscn" id="2_sugp2"]
-[ext_resource type="Texture2D" uid="uid://dpo6m3253p7hd" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://1k8xuo843c3s" path="res://UI/Debug/Debug.gd" id="4_jyhfs"]
-[ext_resource type="Script" uid="uid://b2j1q2hqpvjre" path="res://UI/Inventory/inventory.gd" id="5_tefeu"]
+[ext_resource type="PackedScene" uid="uid://cu1vw6btgxdkv" path="res://UI/Inventory/S_Inventory.tscn" id="4_ya4ey"]
 [ext_resource type="Script" uid="uid://6nhi6pi3psap" path="res://Creatures/BaseCreature.gd" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://crferjj26xq86" path="res://Components/BaseComponent.gd" id="7_tipki"]
 [ext_resource type="Script" uid="uid://cg5pa7l4w7hpi" path="res://Components/HealthComponent/HealthComponent.gd" id="8_tipki"]
 [ext_resource type="Script" uid="uid://ck5etco3ewrkw" path="res://Components/MovementComponent/MovementComponent.gd" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://cb14sh8liqs37" path="res://Components/PathFindingComponent/PathFindingComponent.gd" id="10_choun"]
 [ext_resource type="PackedScene" uid="uid://fnm0yykf8d01" path="res://Levels/Level1.tscn" id="11_ya4ey"]
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_ya4ey"]
-vertices = PackedVector3Array(-49.5, 10.5, -49.5, -49.5, 10.5, -48.5, 49.5, 10.5, -48.5, 49.5, 10.5, -49.5, -48.25, 0.5, 0.25, -5, 0.5, 0.25, -5, 0.5, -0.75, -3.75, 0.5, -1, -3.75, 0.5, -47.75, -48.25, 0.5, -47.75, -3, 0.5, -1, -2.75, 0.5, 0, 48.5, 0.5, 0, 48.5, 0.5, -47.75, -3.25, 0.5, 1.25, -4, 0.5, 1.25, -4, 0.5, 49, 48.5, 0.5, 49, -5, 0.5, 1, -48.25, 0.5, 49)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(6, 5, 4), PackedInt32Array(6, 4, 7), PackedInt32Array(7, 4, 8), PackedInt32Array(8, 4, 9), PackedInt32Array(10, 7, 8), PackedInt32Array(10, 8, 11), PackedInt32Array(11, 8, 12), PackedInt32Array(12, 8, 13), PackedInt32Array(16, 15, 14), PackedInt32Array(14, 11, 16), PackedInt32Array(16, 11, 12), PackedInt32Array(16, 12, 17), PackedInt32Array(4, 5, 18), PackedInt32Array(18, 15, 4), PackedInt32Array(4, 15, 16), PackedInt32Array(4, 16, 19)]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbgi4"]
-albedo_texture = ExtResource("3_sugp2")
-uv1_scale = Vector3(0.5, 0.5, 0.5)
-uv1_triplanar = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_tefeu"]
-material = SubResource("StandardMaterial3D_tbgi4")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_tbgi4"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_85g3d"]
-size = Vector3(100, 10, 100)
-
-[sub_resource type="BoxMesh" id="BoxMesh_choun"]
-size = Vector3(98, 10, 98)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ya4ey"]
-albedo_texture = ExtResource("2_choun")
-uv1_scale = Vector3(100, 100, 100)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o6xl0"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -78,31 +52,6 @@ material = SubResource("StandardMaterial3D_o6xl0")
 
 [node name="Main" type="Node3D"]
 
-[node name="World" type="NavigationRegion3D" parent="."]
-visible = false
-navigation_mesh = SubResource("NavigationMesh_ya4ey")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="World" groups=["Metal"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, 0)
-
-[node name="Cube" type="MeshInstance3D" parent="World/RigidBody3D"]
-mesh = SubResource("BoxMesh_tefeu")
-skeleton = NodePath("")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="World/RigidBody3D"]
-shape = SubResource("BoxShape3D_tbgi4")
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-use_collision = true
-mesh = SubResource("BoxMesh_85g3d")
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="World/CSGMesh3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.615)
-operation = 2
-mesh = SubResource("BoxMesh_choun")
-material = SubResource("StandardMaterial3D_ya4ey")
-
 [node name="Enviroment" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Enviroment"]
@@ -114,6 +63,9 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_sugp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04443, 0)
+
+[node name="S_Inventory" parent="." instance=ExtResource("4_ya4ey")]
+unique_name_in_owner = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -136,34 +88,6 @@ text = "Position: "
 [node name="Velocity" type="Label" parent="UI/Debug/GridContainer"]
 layout_mode = 2
 text = "Velocity:"
-
-[node name="Inventory" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-script = ExtResource("5_tefeu")
-
-[node name="SlotContainer" type="HBoxContainer" parent="UI/Inventory"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
 
 [node name="Enemies" type="Node3D" parent="."]
 
