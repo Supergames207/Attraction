@@ -7,7 +7,7 @@ func get_custom_class_name()->String:
 @export var speed := 6
 @export var jump_power := 10
 @export var rotation_speed := 20
-@export var gravity :Vector3= ProjectSettings.get_setting("physics/3d/default_gravity_vector")
+@export var gravity :Vector3= Vector3(0,-9.8,0)
 
 
 @export var orient_body_to_direction := true
@@ -40,7 +40,7 @@ func move(target_velocity:Vector3,delta:float)->void:
 		orient_parent_to_direction(target_velocity,delta)
 
 func jump() -> void:
-	apply_central_impulse(Vector3.UP*jump_power)
+	parent.apply_central_impulse(Vector3.UP*jump_power)
 
 func cast_raycast(origin:Vector3,end:Vector3)->Dictionary:
 	var space_state: PhysicsDirectSpaceState3D = parent.get_world_3d().direct_space_state

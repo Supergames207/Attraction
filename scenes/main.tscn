@@ -22,12 +22,13 @@ tonemap_mode = 2
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_85g3d"]
 friction = 0.0
 
-[sub_resource type="Resource" id="Resource_85g3d"]
+[sub_resource type="Resource" id="Resource_tefeu"]
 script = ExtResource("9_85g3d")
 speed = 8
+jump_power = 10
 rotation_speed = 20
 gravity = Vector3(0, -9.8, 0)
-orient_body_to_direction = false
+orient_body_to_direction = true
 metadata/_custom_type_script = "uid://ck5etco3ewrkw"
 
 [node name="Main" type="Node3D"]
@@ -47,7 +48,7 @@ physics_material_override = SubResource("PhysicsMaterial_85g3d")
 gravity_scale = 0.0
 lock_rotation = true
 components = Dictionary[String, ExtResource("7_tipki")]({
-"MovementComponent": SubResource("Resource_85g3d")
+"MovementComponent": SubResource("Resource_tefeu")
 })
 
 [node name="S_Inventory" parent="." instance=ExtResource("4_ya4ey")]
