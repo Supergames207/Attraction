@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bjvipbf1mrtmi"]
+[gd_scene load_steps=29 format=3 uid="uid://bjvipbf1mrtmi"]
 
 [ext_resource type="Texture2D" uid="uid://cq460qvb5p3hb" path="res://addons/kenney_prototype_textures/dark/texture_03.png" id="2_choun"]
 [ext_resource type="PackedScene" uid="uid://mm4etp0hcuyr" path="res://prefabs/player/Player.tscn" id="2_sugp2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cg5pa7l4w7hpi" path="res://Components/HealthComponent/HealthComponent.gd" id="8_tipki"]
 [ext_resource type="Script" uid="uid://ck5etco3ewrkw" path="res://Components/MovementComponent/MovementComponent.gd" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://cb14sh8liqs37" path="res://Components/PathFindingComponent/PathFindingComponent.gd" id="10_choun"]
+[ext_resource type="PackedScene" uid="uid://fnm0yykf8d01" path="res://Levels/Level1.tscn" id="11_ya4ey"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ya4ey"]
 vertices = PackedVector3Array(-49.5, 10.5, -49.5, -49.5, 10.5, -48.5, 49.5, 10.5, -48.5, 49.5, 10.5, -49.5, -48.25, 0.5, 0.25, -5, 0.5, 0.25, -5, 0.5, -0.75, -3.75, 0.5, -1, -3.75, 0.5, -47.75, -48.25, 0.5, -47.75, -3, 0.5, -1, -2.75, 0.5, 0, 48.5, 0.5, 0, 48.5, 0.5, -47.75, -3.25, 0.5, 1.25, -4, 0.5, 1.25, -4, 0.5, 49, 48.5, 0.5, 49, -5, 0.5, 1, -48.25, 0.5, 49)
@@ -78,6 +79,7 @@ material = SubResource("StandardMaterial3D_o6xl0")
 [node name="Main" type="Node3D"]
 
 [node name="World" type="NavigationRegion3D" parent="."]
+visible = false
 navigation_mesh = SubResource("NavigationMesh_ya4ey")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="World" groups=["Metal"]]
@@ -151,9 +153,17 @@ script = ExtResource("5_tefeu")
 
 [node name="SlotContainer" type="HBoxContainer" parent="UI/Inventory"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="Enemies" type="Node3D" parent="."]
 
@@ -176,3 +186,5 @@ shape = SubResource("CapsuleShape3D_tefeu")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enemies/Enemy"]
 mesh = SubResource("CapsuleMesh_tipki")
 skeleton = NodePath("")
+
+[node name="Level1" parent="." instance=ExtResource("11_ya4ey")]

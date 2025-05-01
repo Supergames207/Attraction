@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://dmo6c04c3oiye"]
+
+[ext_resource type="Script" uid="uid://6ul30oofs8jt" path="res://Levels/Objects/Button.gd" id="1_f3lrb"]
+[ext_resource type="Texture2D" uid="uid://bb8ngatvem0nd" path="res://addons/kenney_prototype_textures/orange/texture_06.png" id="1_hvjmq"]
+[ext_resource type="Texture2D" uid="uid://2ovgfhciqshe" path="res://addons/kenney_prototype_textures/green/texture_03.png" id="2_f3lrb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_751eg"]
+albedo_texture = ExtResource("1_hvjmq")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_f3lrb"]
+data = PackedVector3Array(-0.5, -0.125, 0.5, 0.5, -0.125, 0.5, 0.5, -0.125, -0.5, 0.25, 0.125, 0.25, 0.5, 0.125, -0.5, 0.5, 0.125, 0.5, 0.5, 0.125, 0.5, -0.25, 0.125, 0.25, 0.25, 0.125, 0.25, 0.25, 0.125, 0.25, 0.25, 0.125, -0.25, 0.5, 0.125, -0.5, 0.5, 0.125, 0.5, 0.5, 0.125, -0.5, 0.5, -0.125, -0.5, 0.5, 0.125, -0.5, 0.25, 0.125, -0.25, -0.5, 0.125, -0.5, 0.5, -0.125, -0.5, 0.5, 0.125, -0.5, -0.5, 0.125, -0.5, 0.5, -0.125, 0.5, 0.5, 0.125, 0.5, 0.5, -0.125, -0.5, 0.5, 0.125, 0.5, 0.5, -0.125, 0.5, -0.5, -0.125, 0.5, -0.5, -0.125, 0.5, -0.5, -0.125, -0.5, -0.5, 0.125, -0.5, -0.5, 0.125, 0.5, -0.25, 0.125, 0.25, 0.5, 0.125, 0.5, -0.5, -0.125, 0.5, 0.5, -0.125, -0.5, -0.5, -0.125, -0.5, -0.5, 0.125, 0.5, 0.5, 0.125, 0.5, -0.5, -0.125, 0.5, -0.25, 0.125, -0.25, -0.25, 0.125, 0.25, -0.5, 0.125, 0.5, -0.5, 0.125, -0.5, -0.5, 0.125, 0.5, -0.5, -0.125, 0.5, -0.5, 0.125, -0.5, 0.25, 0.125, -0.25, -0.25, 0.125, -0.25, 0.5, -0.125, -0.5, -0.5, 0.125, -0.5, -0.5, -0.125, -0.5, -0.25, 0.125, -0.25, -0.5, 0.125, 0.5, -0.5, 0.125, -0.5, -0.25, 0, -0.25, 0.25, 0, -0.25, -0.25, 0, 0.25, 0.25, 0.125, 0.25, 0.25, 0, 0.25, 0.25, 0, -0.25, 0.25, 0.125, 0.25, -0.25, 0.125, 0.25, 0.25, 0, 0.25, 0.25, 0, -0.25, 0.25, 0, 0.25, -0.25, 0, 0.25, 0.25, 0, -0.25, 0.25, 0.125, -0.25, 0.25, 0.125, 0.25, -0.25, 0, 0.25, -0.25, 0.125, -0.25, -0.25, 0, -0.25, -0.25, 0, 0.25, 0.25, 0, 0.25, -0.25, 0.125, 0.25, 0.25, 0, -0.25, -0.25, 0, -0.25, 0.25, 0.125, -0.25, -0.25, 0.125, -0.25, 0.25, 0.125, -0.25, -0.25, 0, -0.25, -0.25, 0, 0.25, -0.25, 0.125, 0.25, -0.25, 0.125, -0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_72l7f"]
+albedo_texture = ExtResource("2_f3lrb")
+
+[sub_resource type="BoxMesh" id="BoxMesh_tt2od"]
+material = SubResource("StandardMaterial3D_72l7f")
+size = Vector3(0.5, 0.25, 0.5)
+
+[node name="Button" type="StaticBody3D"]
+script = ExtResource("1_f3lrb")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(1, 0.25, 1)
+material = SubResource("StandardMaterial3D_751eg")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+operation = 2
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConcavePolygonShape3D_f3lrb")
+
+[node name="Active" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+mesh = SubResource("BoxMesh_tt2od")
