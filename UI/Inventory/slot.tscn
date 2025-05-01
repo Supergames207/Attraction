@@ -1,14 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://wxtrja6byvl"]
+[gd_scene load_steps=5 format=3 uid="uid://wxtrja6byvl"]
 
-[ext_resource type="Theme" uid="uid://dcah27h0fmeiv" path="res://UI/Inventory/Themes/slot_default.tres" id="1_psfh5"]
+[sub_resource type="SystemFont" id="SystemFont_aeygf"]
+font_names = PackedStringArray("Monospace")
+font_weight = 999
+oversampling = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_psfh5"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing_size = 0.82
+
+[sub_resource type="Theme" id="Theme_45i4b"]
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/font_sizes/font_size = 20
+Label/fonts/font = SubResource("SystemFont_aeygf")
+Panel/styles/panel = SubResource("StyleBoxFlat_psfh5")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lt3yb"]
 
 [node name="Slot" type="PanelContainer"]
-custom_minimum_size = Vector2(56, 56)
+custom_minimum_size = Vector2(64, 64)
 offset_right = 57.0
 offset_bottom = 56.0
-theme = ExtResource("1_psfh5")
+theme = SubResource("Theme_45i4b")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_lt3yb")
 
 [node name="Panel" type="Panel" parent="."]
@@ -42,17 +65,14 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "d310d2f904f5654426bb8ea844434584"
 
-[node name="ItemPosition" type="Label" parent="Panel"]
-unique_name_in_owner = true
+[node name="Quantity" type="Label" parent="Panel"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -6.5
-offset_top = -23.0
-offset_right = 6.5
-grow_horizontal = 2
+offset_left = 8.0
+offset_top = -25.0
+offset_right = 20.0
+offset_bottom = -2.0
 grow_vertical = 0
 text = "0"
