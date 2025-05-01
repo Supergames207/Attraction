@@ -5,23 +5,22 @@
 [sub_resource type="BoxMesh" id="BoxMesh_y4ohr"]
 size = Vector3(1, 0.5, 0.5)
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0vxx5"]
-data = PackedVector3Array(-0.5, 0.25, 0.25, 0.5, 0.25, 0.25, -0.5, -0.25, 0.25, 0.5, 0.25, 0.25, 0.5, -0.25, 0.25, -0.5, -0.25, 0.25, 0.5, 0.25, -0.25, -0.5, 0.25, -0.25, 0.5, -0.25, -0.25, -0.5, 0.25, -0.25, -0.5, -0.25, -0.25, 0.5, -0.25, -0.25, 0.5, 0.25, 0.25, 0.5, 0.25, -0.25, 0.5, -0.25, 0.25, 0.5, 0.25, -0.25, 0.5, -0.25, -0.25, 0.5, -0.25, 0.25, -0.5, 0.25, -0.25, -0.5, 0.25, 0.25, -0.5, -0.25, -0.25, -0.5, 0.25, 0.25, -0.5, -0.25, 0.25, -0.5, -0.25, -0.25, 0.5, 0.25, 0.25, -0.5, 0.25, 0.25, 0.5, 0.25, -0.25, -0.5, 0.25, 0.25, -0.5, 0.25, -0.25, 0.5, 0.25, -0.25, -0.5, -0.25, 0.25, 0.5, -0.25, 0.25, -0.5, -0.25, -0.25, 0.5, -0.25, 0.25, 0.5, -0.25, -0.25, -0.5, -0.25, -0.25)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0vxx5"]
+points = PackedVector3Array(-0.492544, -0.25, -0.25, 0.477152, 0.25, 0.25, 0.477152, -0.242064, 0.25, 0.492544, -0.25, -0.25, 0.477152, 0.25, -0.242064, -0.477152, 0.25, 0.25, -0.477152, -0.242064, 0.25, -0.477152, 0.25, -0.242064)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2pas3"]
 size = Vector3(2.5, 1.8, 10)
 
-[node name="Magnetgun" type="Node3D"]
-script = ExtResource("1_0vxx5")
+[node name="Magnetgun" type="StaticBody3D"]
+script = ExtResource("1_2pas3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.176569, 0, 0.984288, 0.133498, 0.99076, 0.023948, -0.975193, 0.135629, -0.174938, 0, -0.110559, -0.25)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.110559, -0.25)
 mesh = SubResource("BoxMesh_y4ohr")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_0vxx5")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.110559, -0.25)
+shape = SubResource("ConvexPolygonShape3D_0vxx5")
 
 [node name="MagnetArea" type="Area3D" parent="."]
 
@@ -30,4 +29,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.768, -0.273, -5)
 shape = SubResource("BoxShape3D_2pas3")
 
 [node name="GunFront" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.890526)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.0536)

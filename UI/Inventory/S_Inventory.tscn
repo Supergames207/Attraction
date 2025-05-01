@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://dulfab5p3h77k"]
+
+[ext_resource type="Script" uid="uid://b2j1q2hqpvjre" path="res://UI/Inventory/inventory.gd" id="2_jp2u3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owsdx"]
+bg_color = Color(0.949309, 0.949309, 0.949309, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+expand_margin_left = 12.0
+expand_margin_top = 5.0
+expand_margin_right = 12.0
+expand_margin_bottom = 5.0
+
+[node name="S_Inventory" type="CanvasLayer"]
+
+[node name="Inventory" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_jp2u3")
+
+[node name="MarginContainer" type="MarginContainer" parent="Inventory"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="Inventory/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_owsdx")
+
+[node name="SlotContainer" type="HBoxContainer" parent="Inventory/MarginContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 10
+alignment = 1

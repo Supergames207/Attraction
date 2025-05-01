@@ -27,17 +27,17 @@ func _physics_process(delta: float) -> void:
 	velocity += SPEED * delta * rotated_direction
 	velocity *= Vector3(DRAG, 1, DRAG)
 	if is_on_floor():
-		velocity.y = 0	
+		velocity.y = 0
 		if Input.is_action_just_pressed("jump"):
 			velocity.y += JUMP_POWER
-	else: velocity.y += -GRAVITY*delta
+	else: velocity.y += -GRAVITY * delta
 	
 	move_and_slide()
 
 #If we ever need to cast a ray from the camera
-func ScreenPoint_to_ray(ray_l:float) -> Dictionary:
-	var space_state :PhysicsDirectSpaceState3D= get_world_3d().direct_space_state
-	var cam :Camera3D= owner.get_node("X_rotation/Y_rotation/Camera3D")
+func ScreenPoint_to_ray(ray_l: float) -> Dictionary:
+	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+	var cam: Camera3D = owner.get_node("X_rotation/Y_rotation/Camera3D")
 	var mousepos := get_viewport().get_mouse_position()
 	var origin := cam.project_ray_origin(mousepos)
 	var end := origin + cam.project_ray_normal(mousepos) * ray_l
