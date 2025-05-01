@@ -42,6 +42,7 @@ func load_item() -> void:
 	
 	var new_item: Node = inventory_data.slotdatas[slot_equipped].item.scene.instantiate()
 	camera_3d.add_child(new_item)
+	new_item.owner = owner
 	new_item.position = default_position
 
 func update_slot() -> void:

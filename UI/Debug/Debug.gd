@@ -3,7 +3,7 @@ extends Control
 
 func _process(_delta:float)->void:
 	$GridContainer/Position.text = "Position: "+str(player.global_position)
-	$GridContainer/Velocity.text = "Velocity: "+str(player.velocity)
+	$GridContainer/Velocity.text = "Velocity: "+str(player.linear_velocity)
 	 
 ###################
 ## PRESS R TO RESET

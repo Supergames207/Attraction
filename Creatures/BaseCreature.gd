@@ -16,11 +16,12 @@ signal physics_frame
 signal process_frame
 
 
-func _ready()->void:
+func _enter_tree() -> void:
 	for component:BaseComponent in components.values():
 		component.parent = self
 		if "_ready" in component:
 			component.call("_ready")
+		print(self)
 	
 
 func _physics_process(delta:float)->void:

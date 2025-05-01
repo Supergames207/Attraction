@@ -8,11 +8,12 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kne1u"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="RigidBody3D"]
 script = ExtResource("1_xhfnw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_kpjcp")
+skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_kne1u")

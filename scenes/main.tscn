@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bjvipbf1mrtmi"]
+[gd_scene load_steps=22 format=3 uid="uid://bjvipbf1mrtmi"]
 
 [ext_resource type="PackedScene" uid="uid://mm4etp0hcuyr" path="res://prefabs/player/Player.tscn" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://1k8xuo843c3s" path="res://UI/Debug/Debug.gd" id="4_jyhfs"]
@@ -22,6 +22,17 @@ background_mode = 2
 sky = SubResource("Sky_tipki")
 tonemap_mode = 2
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_85g3d"]
+friction = 0.0
+
+[sub_resource type="Resource" id="Resource_85g3d"]
+script = ExtResource("9_85g3d")
+speed = 8
+rotation_speed = 20
+gravity = Vector3(0, -1, 0)
+orient_body_to_direction = false
+metadata/_custom_type_script = "uid://ck5etco3ewrkw"
+
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_choun"]
 friction = 0.0
 
@@ -35,6 +46,8 @@ metadata/_custom_type_script = "uid://cg5pa7l4w7hpi"
 script = ExtResource("9_85g3d")
 speed = 6
 rotation_speed = 20
+gravity = Vector3(0, -1, 0)
+orient_body_to_direction = true
 metadata/_custom_type_script = "uid://ck5etco3ewrkw"
 
 [sub_resource type="Resource" id="Resource_eb6dy"]
@@ -62,7 +75,12 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_sugp2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04443, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50058, 11.4082, -10.1923)
+physics_material_override = SubResource("PhysicsMaterial_85g3d")
+lock_rotation = true
+components = Dictionary[String, ExtResource("7_tipki")]({
+"MovementComponent": SubResource("Resource_85g3d")
+})
 
 [node name="S_Inventory" parent="." instance=ExtResource("4_ya4ey")]
 unique_name_in_owner = true
@@ -92,7 +110,7 @@ text = "Velocity:"
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="Enemy" type="RigidBody3D" parent="Enemies"]
-transform = Transform3D(-1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, -1, 0, 1, 8)
+transform = Transform3D(-0.996615, 0, 0.0822051, 0, 1, 0, -0.0822051, 0, -0.996615, 0, 1, 8)
 physics_material_override = SubResource("PhysicsMaterial_choun")
 lock_rotation = true
 contact_monitor = true

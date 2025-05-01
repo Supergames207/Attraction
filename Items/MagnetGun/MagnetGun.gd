@@ -10,6 +10,7 @@ var pulling := 0.0
 func _input(e:InputEvent)->void:
 	if not e is InputEventKey: return
 
+	#What?
 	var event:InputEventKey = e
 	if event.pressed and event.keycode == KEY_E:
 		pulling = not pulling
@@ -24,11 +25,13 @@ func apply_object_force(delta: float) -> void:
 	
 	for i: Node3D in bodies:
 		if not i.is_in_group("Metal"): continue
+
+		var pull_dampening := 0.7
+		var push_dampening := 0.8
+
 		if i is RigidBody3D:
 			var displacement := gun_front.global_position - i.global_position
 			var acceleration := displacement * magnet_power / displacement.length()
-			var pull_dampening := 0.7
-			var push_dampening := 0.8
 			
 			var rb: RigidBody3D = i
 			rb.linear_velocity += pulling * acceleration * delta * 60
@@ -37,3 +40,8 @@ func apply_object_force(delta: float) -> void:
 				rb.linear_velocity *= pull_dampening
 			else:
 				rb.linear_velocity *= push_dampening
+		elif i is StaticBody3D:
+			var displacement :Vector3= i.global_position-owner.global_position
+			displacement.y = 0
+			var acceleration := displacement * magnet_power / displacement.length()
+			owner.velocity += pulling * acceleration * delta * 60
