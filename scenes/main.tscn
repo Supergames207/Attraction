@@ -80,7 +80,7 @@ material = SubResource("StandardMaterial3D_o6xl0")
 [node name="World" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_ya4ey")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="World"]
+[node name="RigidBody3D" type="RigidBody3D" parent="World" groups=["Metal"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, 0)
 
 [node name="Cube" type="MeshInstance3D" parent="World/RigidBody3D"]
@@ -100,6 +100,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.615)
 operation = 2
 mesh = SubResource("BoxMesh_choun")
 material = SubResource("StandardMaterial3D_ya4ey")
+
+[node name="Levels" type="Node3D" parent="World"]
 
 [node name="Enviroment" type="Node3D" parent="."]
 

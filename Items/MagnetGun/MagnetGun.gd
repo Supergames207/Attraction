@@ -23,16 +23,16 @@ func pull_objects(delta: float)->void:
 	var bodies := magnet_area.get_overlapping_bodies()
 	
 	for i: Node3D in bodies:
-		if i.name == "Player": continue
-		if i is not RigidBody3D: continue
-		
-		var displacement := gun_front.global_position - i.global_position
-		var acceleration := (displacement * magnet_power / (displacement.length()**2)) * (int(pulling)*2-1)
-		var dampening := 0.7
-		
-		var rb: RigidBody3D = i
+		if not i.is_in_group("Metal"): continue
+		if i is RigidBody3D:
 
-		#rb.apply_central_force(acceleration*12)
+			var displacement := gun_front.global_position - i.global_position
+			var acceleration := (displacement * magnet_power / (displacement.length()**2)) * (int(pulling)*2-1)
+			var dampening := 0.7
+			
+			var rb: RigidBody3D = i
 
-		rb.linear_velocity += acceleration * delta * 60
-		rb.linear_velocity *= dampening
+			#rb.apply_central_force(acceleration*12)
+
+			rb.linear_velocity += acceleration * delta * 60
+			rb.linear_velocity *= dampening
