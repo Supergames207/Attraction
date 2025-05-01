@@ -20,17 +20,20 @@ func _input(_event:InputEvent)->void:
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if Engine.is_editor_hint(): return
+
 	var direction := Vector3(
 		Input.get_axis("right", "left"),
 		0,
 		Input.get_axis("backward", "forward"),
 	).normalized()
-	
 	var rotated_direction := -direction.rotated(Vector3.UP, X_rot.rotation.y)
 	var velocity := rotated_direction#SPEED * 
 	#velocity *= Vector3(DRAG, 1, DRAG)
 	
 	components["MovementComponent"].move(velocity,state.step)
+	
+	if Input.is_action_just_pressed("jump"):
+		components["MovementComponent"].jump()
 
 #If we ever need to cast a ray from the camera
 func ScreenPoint_to_ray(ray_l: float) -> Dictionary:

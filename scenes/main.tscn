@@ -1,13 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://bjvipbf1mrtmi"]
+[gd_scene load_steps=12 format=3 uid="uid://bjvipbf1mrtmi"]
 
 [ext_resource type="PackedScene" uid="uid://mm4etp0hcuyr" path="res://prefabs/player/Player.tscn" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://1k8xuo843c3s" path="res://UI/Debug/Debug.gd" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://cu1vw6btgxdkv" path="res://UI/Inventory/S_Inventory.tscn" id="4_ya4ey"]
-[ext_resource type="Script" uid="uid://6nhi6pi3psap" path="res://Creatures/BaseCreature.gd" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://crferjj26xq86" path="res://Components/BaseComponent.gd" id="7_tipki"]
-[ext_resource type="Script" uid="uid://cg5pa7l4w7hpi" path="res://Components/HealthComponent/HealthComponent.gd" id="8_tipki"]
 [ext_resource type="Script" uid="uid://ck5etco3ewrkw" path="res://Components/MovementComponent/MovementComponent.gd" id="9_85g3d"]
-[ext_resource type="Script" uid="uid://cb14sh8liqs37" path="res://Components/PathFindingComponent/PathFindingComponent.gd" id="10_choun"]
 [ext_resource type="PackedScene" uid="uid://fnm0yykf8d01" path="res://Levels/Level1.tscn" id="11_ya4ey"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o6xl0"]
@@ -29,39 +26,9 @@ friction = 0.0
 script = ExtResource("9_85g3d")
 speed = 8
 rotation_speed = 20
-gravity = Vector3(0, -1, 0)
+gravity = Vector3(0, -9.8, 0)
 orient_body_to_direction = false
 metadata/_custom_type_script = "uid://ck5etco3ewrkw"
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_choun"]
-friction = 0.0
-
-[sub_resource type="Resource" id="Resource_tipki"]
-script = ExtResource("8_tipki")
-max_health = 100.0
-resistance = 0.1
-metadata/_custom_type_script = "uid://cg5pa7l4w7hpi"
-
-[sub_resource type="Resource" id="Resource_choun"]
-script = ExtResource("9_85g3d")
-speed = 6
-rotation_speed = 20
-gravity = Vector3(0, -1, 0)
-orient_body_to_direction = true
-metadata/_custom_type_script = "uid://ck5etco3ewrkw"
-
-[sub_resource type="Resource" id="Resource_eb6dy"]
-script = ExtResource("10_choun")
-target_node_path = NodePath("../../Player")
-metadata/_custom_type_script = "uid://cb14sh8liqs37"
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tefeu"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6xl0"]
-albedo_color = Color(0.47788, 0.47788, 0.47788, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_tipki"]
-material = SubResource("StandardMaterial3D_o6xl0")
 
 [node name="Main" type="Node3D"]
 
@@ -75,8 +42,9 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_sugp2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50058, 11.4082, -10.1923)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50058, 11.4082, -2.58188)
 physics_material_override = SubResource("PhysicsMaterial_85g3d")
+gravity_scale = 0.0
 lock_rotation = true
 components = Dictionary[String, ExtResource("7_tipki")]({
 "MovementComponent": SubResource("Resource_85g3d")
@@ -108,25 +76,5 @@ layout_mode = 2
 text = "Velocity:"
 
 [node name="Enemies" type="Node3D" parent="."]
-
-[node name="Enemy" type="RigidBody3D" parent="Enemies"]
-transform = Transform3D(-0.996615, 0, 0.0822051, 0, 1, 0, -0.0822051, 0, -0.996615, 0, 1, 8)
-physics_material_override = SubResource("PhysicsMaterial_choun")
-lock_rotation = true
-contact_monitor = true
-max_contacts_reported = 4
-script = ExtResource("6_tefeu")
-components = Dictionary[String, ExtResource("7_tipki")]({
-"HealthComponent": SubResource("Resource_tipki"),
-"MovementComponent": SubResource("Resource_choun"),
-"PathFindingComponent": SubResource("Resource_eb6dy")
-})
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemies/Enemy"]
-shape = SubResource("CapsuleShape3D_tefeu")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemies/Enemy"]
-mesh = SubResource("CapsuleMesh_tipki")
-skeleton = NodePath("")
 
 [node name="Level1" parent="." instance=ExtResource("11_ya4ey")]
