@@ -5,7 +5,7 @@ const SPEED: float = 8;
 const DRAG: float = 0.8;
 const JUMP_POWER: float = 10;
 
-var GRAVITY: Vector3 = Vector3(0,-30,0);
+var GRAVITY: Vector3 = Vector3(0,-9.8,0);
 
 @onready var X_rot := $X_rotation
 

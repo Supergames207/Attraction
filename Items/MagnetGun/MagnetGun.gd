@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var magnet_power := 4
+@export var magnet_power := 20
 var pulling := 0.0
 
 
@@ -31,7 +31,7 @@ func apply_object_force(delta: float) -> void:
 
 		if i is RigidBody3D:
 			var displacement := gun_front.global_position - i.global_position
-			var acceleration := displacement * magnet_power / displacement.length()
+			var acceleration := displacement.normalized() * magnet_power / displacement.length()
 			
 			var rb: RigidBody3D = i
 			rb.linear_velocity += pulling * acceleration * delta * 60
@@ -41,7 +41,27 @@ func apply_object_force(delta: float) -> void:
 			else:
 				rb.linear_velocity *= push_dampening
 		elif i is StaticBody3D:
+			#TODO invert pulling here
+			pulling = -pulling
+			var r := cast_raycast(owner.global_position,i.global_position)
 			var displacement :Vector3= i.global_position-owner.global_position
-			displacement.y = 0
-			var acceleration := displacement * magnet_power / displacement.length()
-			owner.velocity += pulling * acceleration * delta * 60
+
+			if r and cast_raycast(owner.global_position,owner.global_position-r["normal"]*displacement.length()):
+
+				var result := cast_raycast(owner.global_position,owner.global_position-r["normal"]*displacement.length())
+				var dp :Vector3 = result["position"]-owner.global_position
+				var power := (magnet_power*10) / (dp.length())
+				owner.apply_central_force(pulling * -r["normal"] * power)
+			else: #In case we can't get the surface normal
+				var power := magnet_power / (displacement.length())
+				var acceleration := pulling * displacement.normalized() * power
+				owner.apply_central_force(acceleration)
+				
+			pulling = -pulling
+
+func cast_raycast(origin:Vector3,end:Vector3)->Dictionary:
+	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+	var query := PhysicsRayQueryParameters3D.create(origin, end)
+	query.exclude = [self]
+	var result := space_state.intersect_ray(query)
+	return result

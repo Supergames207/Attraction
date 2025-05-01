@@ -25,10 +25,11 @@ friction = 0.0
 [sub_resource type="Resource" id="Resource_tefeu"]
 script = ExtResource("9_85g3d")
 speed = 8
-jump_power = 10
+jump_power = 6
 rotation_speed = 20
+default_gravity = null
 gravity = Vector3(0, -9.8, 0)
-orient_body_to_direction = true
+orient_body_to_direction = false
 metadata/_custom_type_script = "uid://ck5etco3ewrkw"
 
 [node name="Main" type="Node3D"]
