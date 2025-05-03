@@ -1,12 +1,6 @@
 @tool
 class_name  Player extends BaseCreature
 
-const SPEED: float = 8;
-const DRAG: float = 0.8;
-const JUMP_POWER: float = 10;
-
-var GRAVITY: Vector3 = Vector3(0,-9.8,0);
-
 @onready var X_rot :Node3D= $X_rotation
 
 func _ready() -> void:

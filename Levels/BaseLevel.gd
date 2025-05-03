@@ -5,7 +5,7 @@ class_name BaseLevel extends Node3D
 @export var buttons_holder :Node3D
 
 signal changed
-
+signal finished
 
 func _ready() -> void:
 	changed.connect(update)
@@ -19,8 +19,6 @@ func update() -> void:
 		if button.active: continue
 		level_finsihed = false
 
+	finished.emit(level_finsihed)
 	if level_finsihed:
-		finish_level()
-	
-func finish_level() -> void:
-	print("Level Finished")
+		print("Level Finished")

@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://pvgi2nm6bvis"]
+
+[ext_resource type="Script" uid="uid://cw4gu8y7c0yn" path="res://Levels/BaseLevel.gd" id="1_nn734"]
+[ext_resource type="PackedScene" uid="uid://ck7alokwwv42v" path="res://Levels/Objects/Door.tscn" id="2_506po"]
+[ext_resource type="PackedScene" uid="uid://dmo6c04c3oiye" path="res://Levels/Objects/Button.tscn" id="3_v115i"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nn734"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_506po"]
+
+[node name="Level2" type="Node3D" node_paths=PackedStringArray("enemies_holder", "buttons_holder")]
+script = ExtResource("1_nn734")
+enemies_holder = NodePath("EnemiesHolder")
+buttons_holder = NodePath("ButtonsHolder")
+metadata/_custom_type_script = "uid://cw4gu8y7c0yn"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(7.5, 10, 10)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+operation = 2
+size = Vector3(7, 9.6, 9)
+
+[node name="EntranceDoor" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.75, -4.5)
+operation = 2
+size = Vector3(2.5, 3.5, 1)
+
+[node name="Door" parent="CSGBox3D" instance=ExtResource("2_506po")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.75, 4.5)
+closed = true
+
+[node name="EnemiesHolder" type="Node3D" parent="."]
+
+[node name="ButtonsHolder" type="Node3D" parent="."]
+
+[node name="Button" parent="ButtonsHolder" instance=ExtResource("3_v115i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.5, -2.5)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." groups=["Metal"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.71241, 1.21055, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_nn734")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_506po")

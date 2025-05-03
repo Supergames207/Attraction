@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://1023vx62cgh4"]
+
+[ext_resource type="Script" uid="uid://cw4gu8y7c0yn" path="res://Levels/BaseLevel.gd" id="1_jon3f"]
+[ext_resource type="PackedScene" uid="uid://ck7alokwwv42v" path="res://Levels/Objects/Door.tscn" id="2_8eiv4"]
+[ext_resource type="PackedScene" uid="uid://kli1b7pjs0x5" path="res://Creatures/BaseEnemie.tscn" id="3_8eiv4"]
+[ext_resource type="PackedScene" uid="uid://dmo6c04c3oiye" path="res://Levels/Objects/Button.tscn" id="3_yd8fq"]
+[ext_resource type="PackedScene" uid="uid://d1607iqew1nxs" path="res://Levels/Objects/BaseMetalBox.tscn" id="5_yd8fq"]
+
+[node name="Level3" type="Node3D" node_paths=PackedStringArray("enemies_holder", "buttons_holder")]
+script = ExtResource("1_jon3f")
+enemies_holder = NodePath("EnemiesHolder")
+buttons_holder = NodePath("ButtonsHolder")
+metadata/_custom_type_script = "uid://cw4gu8y7c0yn"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(7.5, 10, 10)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+operation = 2
+size = Vector3(7, 9.6, 9)
+
+[node name="EntranceDoor" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.75, -4.5)
+operation = 2
+size = Vector3(2.5, 3.5, 1)
+
+[node name="Door" parent="CSGBox3D" instance=ExtResource("2_8eiv4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.75, 4.5)
+closed = true
+
+[node name="EnemiesHolder" type="Node3D" parent="."]
+
+[node name="BaseEnemie" parent="EnemiesHolder" instance=ExtResource("3_8eiv4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1162, 1.5, 2.51731)
+
+[node name="ButtonsHolder" type="Node3D" parent="."]
+
+[node name="Button" parent="ButtonsHolder" instance=ExtResource("3_yd8fq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.5, -2.5)
+
+[node name="BaseMetalBox" parent="." instance=ExtResource("5_yd8fq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.15839, 1.0793, 2.53207)

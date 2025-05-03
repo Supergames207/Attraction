@@ -21,7 +21,6 @@ func _enter_tree() -> void:
 		component.parent = self
 		if "_ready" in component:
 			component.call("_ready")
-		print(self)
 	
 
 func _physics_process(delta:float)->void:

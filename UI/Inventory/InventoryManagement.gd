@@ -32,6 +32,8 @@ func get_root() -> Node:
 
 func load_item() -> void:
 	for child in camera_3d.get_children():
+		if "unequip" in child:
+			child.call("unequip")
 		child.queue_free()
 	
 	if (slot_equipped < 0

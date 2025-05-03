@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmo6c04c3oiye"]
+[gd_scene load_steps=10 format=3 uid="uid://dmo6c04c3oiye"]
 
 [ext_resource type="Script" uid="uid://6ul30oofs8jt" path="res://Levels/Objects/Button.gd" id="1_f3lrb"]
 [ext_resource type="Texture2D" uid="uid://bb8ngatvem0nd" path="res://addons/kenney_prototype_textures/orange/texture_06.png" id="1_hvjmq"]
@@ -17,10 +17,15 @@ albedo_texture = ExtResource("2_f3lrb")
 material = SubResource("StandardMaterial3D_72l7f")
 size = Vector3(0.75, 0.25, 0.75)
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f3lrb"]
+points = PackedVector3Array(-0.375, -0.125, -0.375, -0.375, 0.125, -0.375, 0.375, -0.125, -0.375, -0.375, -0.125, 0.375, -0.375, 0.125, 0.375, 0.375, 0.125, -0.375, 0.375, -0.125, 0.375, 0.375, 0.125, 0.375)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_f3lrb"]
-size = Vector3(0.75, 0.25, 0.75)
+size = Vector3(0.75, 0.3, 0.75)
 
 [node name="Button" type="StaticBody3D"]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_f3lrb")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
@@ -40,9 +45,18 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
 mesh = SubResource("BoxMesh_tt2od")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Active"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Active/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_f3lrb")
+
 [node name="HitBox" type="Area3D" parent="."]
 unique_name_in_owner = true
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_f3lrb")

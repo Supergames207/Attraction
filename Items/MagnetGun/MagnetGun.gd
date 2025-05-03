@@ -1,28 +1,21 @@
 extends Node3D
 
+
+@onready var magnet_area: Area3D = $MagnetArea
+@onready var gun_front: Node3D = %GunFront
+
 @export var magnet_power := 20
 var pulling := 0.0
 
-
-@onready var magnet_area: Area3D = $MagnetArea
-@onready var gun_front: Node3D = $GunFront
-
-func _input(e:InputEvent)->void:
-	if not e is InputEventKey: return
-
-	#What?
-	var event:InputEventKey = e
-	if event.pressed and event.keycode == KEY_E:
-		pulling = not pulling
 
 func _physics_process(delta: float) -> void:
 	pulling = Input.get_axis("magnet_push", "magnet_pull")
 	apply_object_force(delta)
 
+
 func apply_object_force(delta: float) -> void:
-	if not pulling: return
 	var bodies: Array[Node3D] = magnet_area.get_overlapping_bodies()
-	
+	owner.components["MovementComponent"].gravity = Vector3.ZERO
 	for i: Node3D in bodies:
 		if not i.is_in_group("Metal"): continue
 
@@ -31,15 +24,15 @@ func apply_object_force(delta: float) -> void:
 
 		if i is RigidBody3D:
 			var displacement := gun_front.global_position - i.global_position
-			var acceleration := displacement.normalized() * magnet_power / displacement.length()
+			var acceleration := displacement.normalized() * ((magnet_power*7) / displacement.length())
 			
 			var rb: RigidBody3D = i
-			rb.linear_velocity += pulling * acceleration * delta * 60
-			
-			if pulling > 0:
-				rb.linear_velocity *= pull_dampening
-			else:
-				rb.linear_velocity *= push_dampening
+			rb.apply_central_force(pulling*acceleration)
+			#rb.linear_velocity += pulling * acceleration * delta * 60
+			#if pulling > 0:
+			#	rb.linear_velocity *= pull_dampening
+			#elif pulling < 0:
+			#	rb.linear_velocity *= push_dampening
 		elif i is StaticBody3D:
 			pulling = -pulling
 			var r := cast_raycast(owner.global_position,i.global_position)
@@ -51,15 +44,15 @@ func apply_object_force(delta: float) -> void:
 				var dp :Vector3 = result["position"]-owner.global_position
 				var power := (magnet_power) / (dp.length())
 				var acceleration :Vector3= pulling * -r["normal"] * power
-				owner.components["MovementComponent"].gravity = acceleration
-				#owner.apply_central_force(pulling * -r["normal"] * power)
+				owner.components["MovementComponent"].gravity += acceleration
 			else: #In case we can't get the surface normal
 				var power := magnet_power / (displacement.length())
 				var acceleration := pulling * displacement.normalized() * power
-				owner.components["MovementComponent"].gravity = acceleration
-				#owner.apply_central_force(acceleration)
+				owner.components["MovementComponent"].gravity += acceleration
 			
 			pulling = -pulling
+	if owner.components["MovementComponent"].gravity == Vector3.ZERO or pulling==0:
+		owner.components["MovementComponent"].gravity = Vector3(0,-9.8,0)
 
 func cast_raycast(origin:Vector3,end:Vector3)->Dictionary:
 	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
@@ -67,3 +60,6 @@ func cast_raycast(origin:Vector3,end:Vector3)->Dictionary:
 	query.exclude = [self]
 	var result := space_state.intersect_ray(query)
 	return result
+
+func unequip() -> void:
+	owner.components["MovementComponent"].gravity = Vector3(0,-9.8,0)
