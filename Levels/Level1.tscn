@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://fnm0yykf8d01"]
+[gd_scene load_steps=16 format=3 uid="uid://fnm0yykf8d01"]
 
 [ext_resource type="Script" uid="uid://cw4gu8y7c0yn" path="res://Levels/BaseLevel.gd" id="1_w77jt"]
 [ext_resource type="Texture2D" uid="uid://dpo6m3253p7hd" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="2_fhqol"]
@@ -34,6 +34,12 @@ size = Vector3(10, 10, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_nutv8"]
 size = Vector3(10, 10, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nutv8"]
+size = Vector3(10, 5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dl8mf"]
+size = Vector3(10, 5, 1)
 
 [node name="Level1" type="Node3D" node_paths=PackedStringArray("enemies_holder", "buttons_holder")]
 script = ExtResource("1_w77jt")
@@ -77,5 +83,14 @@ shape = SubResource("BoxShape3D_iotdp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Wall"]
 mesh = SubResource("BoxMesh_nutv8")
+
+[node name="Wall2" type="StaticBody3D" parent="World" groups=["Metal"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 10, -8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Wall2"]
+shape = SubResource("BoxShape3D_nutv8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Wall2"]
+mesh = SubResource("BoxMesh_dl8mf")
 
 [node name="EnemiesHolder" type="Node3D" parent="."]

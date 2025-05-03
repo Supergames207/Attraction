@@ -15,6 +15,7 @@ func get_custom_class_name()->String:
 
 var Pid := Pid3D.new(2.0,0.2,0.)
 var jump_debounce := false
+var last_strong_dir := Vector3.ZERO
 
 ##Orients parent to a direction
 func orient_parent_to_direction(direction:Vector3,delta:float) -> void:
@@ -28,8 +29,8 @@ func orient_parent_to_direction(direction:Vector3,delta:float) -> void:
 ##Applies a force to self's parent for it to achieve target_velocity
 func move(target_velocity:Vector3,delta:float)->void:
 	if Engine.is_editor_hint(): return
-	#if target_velocity.length() < 1: Pid._p = 10
-	#else: Pid._p = 2
+	if target_velocity.length()>0.2:
+		last_strong_dir = target_velocity
 	target_velocity *= speed
 	target_velocity += parent.basis.y.dot(parent.linear_velocity)*parent.basis.y
 	var velocity_error :Vector3 = target_velocity-parent.linear_velocity
@@ -39,13 +40,14 @@ func move(target_velocity:Vector3,delta:float)->void:
 	#	parent.linear_velocity = Vector3.ZERO
 	if not jump_debounce: jump_debounce = true
 	if orient_body_to_direction:
-		orient_parent_to_direction(target_velocity,delta)
+		orient_parent_to_direction(last_strong_dir,delta)
 
 
 ##Jumps, isn't it obvious?
 func jump() -> void:
+	if not cast_raycast(parent.global_position,parent.global_position-parent.basis.y*1.5): return
 	jump_debounce = false
-	parent.apply_central_impulse(Vector3.UP*jump_power)
+	parent.apply_central_impulse(parent.basis.y*jump_power)
 
 func cast_raycast(origin:Vector3,end:Vector3)->Dictionary:
 	var space_state: PhysicsDirectSpaceState3D = parent.get_world_3d().direct_space_state

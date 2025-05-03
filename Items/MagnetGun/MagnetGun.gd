@@ -41,7 +41,6 @@ func apply_object_force(delta: float) -> void:
 			else:
 				rb.linear_velocity *= push_dampening
 		elif i is StaticBody3D:
-			#TODO invert pulling here
 			pulling = -pulling
 			var r := cast_raycast(owner.global_position,i.global_position)
 			var displacement :Vector3= i.global_position-owner.global_position
@@ -50,13 +49,16 @@ func apply_object_force(delta: float) -> void:
 
 				var result := cast_raycast(owner.global_position,owner.global_position-r["normal"]*displacement.length())
 				var dp :Vector3 = result["position"]-owner.global_position
-				var power := (magnet_power*10) / (dp.length())
-				owner.apply_central_force(pulling * -r["normal"] * power)
+				var power := (magnet_power) / (dp.length())
+				var acceleration :Vector3= pulling * -r["normal"] * power
+				owner.components["MovementComponent"].gravity = acceleration
+				#owner.apply_central_force(pulling * -r["normal"] * power)
 			else: #In case we can't get the surface normal
 				var power := magnet_power / (displacement.length())
 				var acceleration := pulling * displacement.normalized() * power
-				owner.apply_central_force(acceleration)
-				
+				owner.components["MovementComponent"].gravity = acceleration
+				#owner.apply_central_force(acceleration)
+			
 			pulling = -pulling
 
 func cast_raycast(origin:Vector3,end:Vector3)->Dictionary:

@@ -7,7 +7,7 @@ const JUMP_POWER: float = 10;
 
 var GRAVITY: Vector3 = Vector3(0,-9.8,0);
 
-@onready var X_rot := $X_rotation
+@onready var X_rot :Node3D= $X_rotation
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -26,12 +26,9 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		0,
 		Input.get_axis("backward", "forward"),
 	).normalized()
-	var rotated_direction := -direction.rotated(Vector3.UP, X_rot.rotation.y)
-	var velocity := rotated_direction#SPEED * 
-	#velocity *= Vector3(DRAG, 1, DRAG)
-	
+	var velocity :Vector3= (direction.x*-X_rot.global_basis.x)+(direction.z*-X_rot.global_basis.z)
 	components["MovementComponent"].move(velocity,state.step)
-	
+	components["MovementComponent"].orient_parent_to_direction(X_rot.global_basis.z,state.step)
 	if Input.is_action_just_pressed("jump"):
 		components["MovementComponent"].jump()
 
