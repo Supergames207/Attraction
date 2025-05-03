@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjvipbf1mrtmi"]
+[gd_scene load_steps=12 format=3 uid="uid://bjvipbf1mrtmi"]
 
 [ext_resource type="PackedScene" uid="uid://mm4etp0hcuyr" path="res://prefabs/player/Player.tscn" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://1k8xuo843c3s" path="res://UI/Debug/Debug.gd" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://cu1vw6btgxdkv" path="res://UI/Inventory/S_Inventory.tscn" id="4_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://pvgi2nm6bvis" path="res://Levels/Level2.tscn" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://1023vx62cgh4" path="res://Levels/Level3.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://c34jh816cb6pm" path="res://Levels/Level4.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://fnm0yykf8d01" path="res://Levels/Level1.tscn" id="11_ya4ey"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o6xl0"]
@@ -34,7 +35,7 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_sugp2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -3.54452)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 19.9735)
 rotation_edit_mode = 0
 physics_material_override = SubResource("PhysicsMaterial_85g3d")
 gravity_scale = 0.0
@@ -75,3 +76,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 
 [node name="Level3" parent="." instance=ExtResource("6_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+
+[node name="BaseLevel" parent="." instance=ExtResource("7_o6xl0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30)
