@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjvipbf1mrtmi"]
+[gd_scene load_steps=15 format=3 uid="uid://bjvipbf1mrtmi"]
 
 [ext_resource type="PackedScene" uid="uid://mm4etp0hcuyr" path="res://prefabs/player/Player.tscn" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://1k8xuo843c3s" path="res://UI/Debug/Debug.gd" id="4_jyhfs"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://pvgi2nm6bvis" path="res://Levels/Level2.tscn" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://1023vx62cgh4" path="res://Levels/Level3.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://c34jh816cb6pm" path="res://Levels/Level4.tscn" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://cnm4tbgbc8nxp" path="res://Levels/Level5.tscn" id="8_tipki"]
+[ext_resource type="PackedScene" uid="uid://cabyy44fliug6" path="res://Levels/Level6.tscn" id="9_85g3d"]
+[ext_resource type="PackedScene" uid="uid://d4hydtohceu1b" path="res://Levels/Level7.tscn" id="10_choun"]
 [ext_resource type="PackedScene" uid="uid://fnm0yykf8d01" path="res://Levels/Level1.tscn" id="11_ya4ey"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o6xl0"]
@@ -35,12 +38,11 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_sugp2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 19.9735)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.80742, 1.5, 37.0045)
 rotation_edit_mode = 0
 physics_material_override = SubResource("PhysicsMaterial_85g3d")
 gravity_scale = 0.0
 lock_rotation = true
-continuous_cd = true
 
 [node name="S_Inventory" parent="." instance=ExtResource("4_ya4ey")]
 unique_name_in_owner = true
@@ -77,5 +79,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 [node name="Level3" parent="." instance=ExtResource("6_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 
-[node name="BaseLevel" parent="." instance=ExtResource("7_o6xl0")]
+[node name="Level4" parent="." instance=ExtResource("7_o6xl0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30)
+
+[node name="Level5" parent="." instance=ExtResource("8_tipki")]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, -6.13057, 4.58909, 38.8369)
+
+[node name="Level6" parent="." instance=ExtResource("9_85g3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.472, 7.05539, 41.541)
+
+[node name="Level7" parent="." instance=ExtResource("10_choun")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14.9033, 9.4219, 56.2833)

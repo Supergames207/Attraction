@@ -17,7 +17,6 @@ func _ready() -> void:
 
 func _physics_process(_delta:float) -> void:
 	var colliding_bodies := parent.get_colliding_bodies()
-
 	for bodie in colliding_bodies:
 		if not bodie is RigidBody3D: continue
 		var rigid :RigidBody3D = bodie

@@ -24,6 +24,7 @@ metadata/_custom_type_script = "uid://ck5etco3ewrkw"
 rotation_edit_mode = 2
 collision_layer = 2
 collision_mask = 2
+continuous_cd = true
 script = ExtResource("1_xhfnw")
 components = Dictionary[String, ExtResource("2_35c0j")]({
 "MovementComponent": SubResource("Resource_xgtsh")

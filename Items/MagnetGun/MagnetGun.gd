@@ -6,7 +6,7 @@ extends Node3D
 
 @export var magnet_power := 20
 var pulling := 0.0
-
+var equipped := true
 
 func _physics_process(delta: float) -> void:
 	pulling = Input.get_axis("magnet_push", "magnet_pull")
@@ -14,13 +14,14 @@ func _physics_process(delta: float) -> void:
 
 
 func apply_object_force(delta: float) -> void:
+	if not equipped: return
 	var bodies: Array[Node3D] = magnet_area.get_overlapping_bodies()
 	owner.components["MovementComponent"].gravity = Vector3.ZERO
 	for i: Node3D in bodies:
 		if not i.is_in_group("Metal"): continue
 
-		var pull_dampening := 0.7
-		var push_dampening := 0.8
+		#var pull_dampening := 0.7
+		#var push_dampening := 0.8
 
 		if i is RigidBody3D:
 			var displacement := gun_front.global_position - i.global_position
@@ -44,11 +45,17 @@ func apply_object_force(delta: float) -> void:
 				var dp :Vector3 = result["position"]-owner.global_position
 				var power := (magnet_power) / (dp.length())
 				var acceleration :Vector3= pulling * -r["normal"] * power
-				owner.components["MovementComponent"].gravity += acceleration
+				if pulling>0:
+					owner.components["MovementComponent"].gravity += acceleration
+				else:
+					owner.apply_central_force(acceleration)
 			else: #In case we can't get the surface normal
 				var power := magnet_power / (displacement.length())
 				var acceleration := pulling * displacement.normalized() * power
-				owner.components["MovementComponent"].gravity += acceleration
+				if pulling>0:
+					owner.components["MovementComponent"].gravity += acceleration
+				else:
+					owner.apply_central_force(acceleration)
 			
 			pulling = -pulling
 	if owner.components["MovementComponent"].gravity == Vector3.ZERO or pulling==0:
@@ -62,4 +69,5 @@ func cast_raycast(origin:Vector3,end:Vector3)->Dictionary:
 	return result
 
 func unequip() -> void:
+	equipped = false
 	owner.components["MovementComponent"].gravity = Vector3(0,-9.8,0)

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo6q1l6sdqiua"]
+
+[ext_resource type="Script" uid="uid://c20yn5llyj4et" path="res://Levels/Objects/BaseMetalWall.gd" id="1_0bvnu"]
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+script = ExtResource("1_0bvnu")

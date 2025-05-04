@@ -1,10 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://1023vx62cgh4"]
+[gd_scene load_steps=11 format=3 uid="uid://1023vx62cgh4"]
 
 [ext_resource type="Script" uid="uid://cw4gu8y7c0yn" path="res://Levels/BaseLevel.gd" id="1_jon3f"]
 [ext_resource type="PackedScene" uid="uid://ck7alokwwv42v" path="res://Levels/Objects/Door.tscn" id="2_8eiv4"]
-[ext_resource type="PackedScene" uid="uid://kli1b7pjs0x5" path="res://Creatures/BaseEnemie.tscn" id="3_8eiv4"]
 [ext_resource type="PackedScene" uid="uid://dmo6c04c3oiye" path="res://Levels/Objects/Button.tscn" id="3_yd8fq"]
+[ext_resource type="Script" uid="uid://6nhi6pi3psap" path="res://Creatures/BaseCreature.gd" id="4_twi1l"]
+[ext_resource type="Script" uid="uid://crferjj26xq86" path="res://Components/BaseComponent.gd" id="5_q5lgr"]
 [ext_resource type="PackedScene" uid="uid://d1607iqew1nxs" path="res://Levels/Objects/BaseMetalBox.tscn" id="5_yd8fq"]
+[ext_resource type="Script" uid="uid://cg5pa7l4w7hpi" path="res://Components/HealthComponent/HealthComponent.gd" id="6_hy5j1"]
+
+[sub_resource type="Resource" id="Resource_bngkx"]
+script = ExtResource("6_hy5j1")
+max_health = 100.0
+resistance = 0.1
+metadata/_custom_type_script = "uid://cg5pa7l4w7hpi"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xxxi4"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4c4gq"]
 
 [node name="Level3" type="Node3D" node_paths=PackedStringArray("enemies_holder", "buttons_holder")]
 script = ExtResource("1_jon3f")
@@ -20,9 +32,9 @@ collision_mask = 3
 size = Vector3(7.5, 10, 10)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 operation = 2
-size = Vector3(7, 9.6, 9)
+size = Vector3(7, 9.5, 9)
 
 [node name="EntranceDoor" type="CSGBox3D" parent="CSGBox3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.75, -4.5)
@@ -33,10 +45,29 @@ size = Vector3(2.5, 3.5, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.75, 4.5)
 closed = true
 
+[node name="OmniLight3D" type="OmniLight3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.85389, 0)
+omni_range = 10.0
+
 [node name="EnemiesHolder" type="Node3D" parent="."]
 
-[node name="BaseEnemie" parent="EnemiesHolder" instance=ExtResource("3_8eiv4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1162, 1.5, 2.51731)
+[node name="BaseEnemie" type="RigidBody3D" parent="EnemiesHolder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81739, 1.77649, 2.42867)
+collision_layer = 3
+collision_mask = 3
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("4_twi1l")
+components = Dictionary[String, ExtResource("5_q5lgr")]({
+"HealthComponent": SubResource("Resource_bngkx")
+})
+metadata/_custom_type_script = "uid://6nhi6pi3psap"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemiesHolder/BaseEnemie"]
+shape = SubResource("CapsuleShape3D_xxxi4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnemiesHolder/BaseEnemie"]
+mesh = SubResource("CapsuleMesh_4c4gq")
 
 [node name="ButtonsHolder" type="Node3D" parent="."]
 

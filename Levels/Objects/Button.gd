@@ -18,14 +18,12 @@ func _process(delta:float) -> void:
          %Active.position = lerp(%Active.position,Vector3.ZERO,delta*2)
 
 func body_entered(_body:Node) -> void:
-    print(_body)
     if not collision_needed and active: return
     active = len(hitbox.get_overlapping_bodies()) > 1
     %Active.get_node("StaticBody3D/CollisionShape3D").set_deferred("disbled",active)
     owner.changed.emit()
 
 func body_exited(_body:Node) -> void:
-    print(_body)
     if not collision_needed and active: return
     active = len(hitbox.get_overlapping_bodies()) > 1
     %Active.get_node("StaticBody3D/CollisionShape3D").set_deferred("disbled",active)

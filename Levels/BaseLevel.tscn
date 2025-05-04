@@ -4,8 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://ck7alokwwv42v" path="res://Levels/Objects/Door.tscn" id="2_jq6ke"]
 [ext_resource type="PackedScene" uid="uid://dmo6c04c3oiye" path="res://Levels/Objects/Button.tscn" id="3_c6rcp"]
 
-[node name="BaseLevel" type="Node3D"]
+[node name="BaseLevel" type="Node3D" node_paths=PackedStringArray("enemies_holder", "buttons_holder")]
 script = ExtResource("1_o70k2")
+enemies_holder = NodePath("EnemiesHolder")
+buttons_holder = NodePath("ButtonsHolder")
 metadata/_custom_type_script = "uid://cw4gu8y7c0yn"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
@@ -16,9 +18,9 @@ collision_mask = 3
 size = Vector3(7.5, 10, 10)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 operation = 2
-size = Vector3(7, 9.6, 9)
+size = Vector3(7, 9.5, 9)
 
 [node name="EntranceDoor" type="CSGBox3D" parent="CSGBox3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.75, -4.5)
@@ -28,6 +30,9 @@ size = Vector3(2.5, 3.5, 1)
 [node name="Door" parent="CSGBox3D" instance=ExtResource("2_jq6ke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.75, 4.5)
 closed = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.50104, 0)
 
 [node name="EnemiesHolder" type="Node3D" parent="."]
 

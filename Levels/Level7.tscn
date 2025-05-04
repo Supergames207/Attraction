@@ -1,0 +1,105 @@
+[gd_scene load_steps=7 format=3 uid="uid://d4hydtohceu1b"]
+
+[ext_resource type="Script" uid="uid://cw4gu8y7c0yn" path="res://Levels/BaseLevel.gd" id="1_eld38"]
+[ext_resource type="PackedScene" uid="uid://ck7alokwwv42v" path="res://Levels/Objects/Door.tscn" id="2_isoma"]
+[ext_resource type="PackedScene" uid="uid://dmo6c04c3oiye" path="res://Levels/Objects/Button.tscn" id="3_gxfhd"]
+[ext_resource type="Script" uid="uid://c20yn5llyj4et" path="res://Levels/Objects/BaseMetalWall.gd" id="4_isoma"]
+[ext_resource type="PackedScene" uid="uid://d1607iqew1nxs" path="res://Levels/Objects/BaseMetalBox.tscn" id="5_gxfhd"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gxfhd"]
+size = Vector3(1, 10, 1)
+
+[node name="Level7" type="Node3D" node_paths=PackedStringArray("enemies_holder", "buttons_holder")]
+script = ExtResource("1_eld38")
+enemies_holder = NodePath("EnemiesHolder")
+buttons_holder = NodePath("ButtonsHolder")
+metadata/_custom_type_script = "uid://cw4gu8y7c0yn"
+
+[node name="Room1" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(20, 9.9, 20)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room1"]
+operation = 2
+size = Vector3(19.8, 9.5, 19.8)
+
+[node name="EntranceDoor" type="CSGBox3D" parent="Room1"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.59869, -2.75, -0.510798)
+operation = 2
+size = Vector3(2.5, 3.5, 1)
+
+[node name="EntranceDoor2" type="CSGBox3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 8.6, 5.53949, 6.8)
+operation = 2
+size = Vector3(2.5, 3.5, 2.08252)
+
+[node name="EntranceDoor3" type="CSGBox3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.45872, 5.41037, 7.23701)
+operation = 2
+size = Vector3(2.6, 2.6, 2)
+
+[node name="Door" parent="Room1" instance=ExtResource("2_isoma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.75, 9.69215)
+closed = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.50104, 0)
+
+[node name="Room2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4555, 14.9305, 7.49816)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(5, 9.9, 5)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.2, 0)
+operation = 2
+size = Vector3(4.9, 9.25, 4.8)
+
+[node name="EntranceDoor" type="CSGBox3D" parent="Room2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.1445, -4.59441, -0.698159)
+operation = 2
+size = Vector3(2.5, 3.5, 2.02985)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Room2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.50104, 0)
+
+[node name="Room3" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.56752, 14.9305, 7.49816)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(5, 9.9, 5)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.2, 0)
+operation = 2
+size = Vector3(4.9, 9.25, 4.8)
+
+[node name="EntranceDoor" type="CSGBox3D" parent="Room3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.10898, -4.56721, 0.224535)
+operation = 2
+size = Vector3(2.5, 2.5, 1)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Room3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.50104, 0)
+
+[node name="EnemiesHolder" type="Node3D" parent="."]
+
+[node name="ButtonsHolder" type="Node3D" parent="."]
+
+[node name="Button" parent="ButtonsHolder" instance=ExtResource("3_gxfhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.23591, 11.1211, 6.93246)
+
+[node name="MetalWall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.62941, 4.9186, 8.53766)
+mesh = SubResource("BoxMesh_gxfhd")
+script = ExtResource("4_isoma")
+metadata/_custom_type_script = "uid://c20yn5llyj4et"
+
+[node name="BaseMetalBox" parent="." instance=ExtResource("5_gxfhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5828, 1.66733, 4.54169)
